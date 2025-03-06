@@ -6,6 +6,8 @@ A messaging app where users can chat with chatbots pretending to be cartoon char
 
 This project is being developed as my submission for 𝐁𝐮𝐢𝐥𝐝 𝐚 𝐆𝐅/𝐁𝐅 𝐂𝐡𝐚𝐭𝐛𝐨𝐭! 𝐄𝐯𝐞𝐧𝐭 which will end on March 14, 2025. More details [here](https://www.facebook.com/share/p/18HJc3LZtV/).
 
+[Figma Link](https://www.figma.com/design/FrZtZYkOmOYsVvo40gvfCn/toonder?node-id=0-1&p=f&t=vI8sVpNjrz3KJfyV-0)
+
 ## Features
 
 - List of Cartoon characters (romantic chatbot) to choose from.
@@ -16,5 +18,4 @@ This project is being developed as my submission for 𝐁𝐮𝐢𝐥𝐝 𝐚 �
 ## Tech Stack
 
 - React Native (Expo)
-- Supabase / PostgreSQL
-- Chatbot: OpenAI GPT API / DeepSeek API (tbd)
+- AI API (whatever i see that is free and ez)
