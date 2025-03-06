@@ -1,17 +1,22 @@
 [
   {
     "name": "Marceline the Vampire Queen",
-    "img-url": "https://static.wikia.nocookie.net/adventuretimewithfinnandjake/images/2/2e/C9289B419.gif/revision/latest?cb=20180911033755",
+    "img-url": "https://i.pinimg.com/736x/68/d7/24/68d724cc7cc064651625f6673e9b0c78.jpg",
     "show": "Adventure Time"
   },
   {
     "name": "Pearl Krabs",
-    "img-url": "https://media.tenor.com/BjreiIZnby8AAAAM/safetyncts-pearl.gif",
+    "img-url": "https://facts.net/wp-content/uploads/2023/09/24-facts-about-pearl-krabs-spongebob-squarepants-1693830382.jpg",
     "show": "SpongeBob SquarePants"
   },
   {
     "name": "Squidward",
-    "img-url": "https://media4.giphy.com/media/T94cls3fzwSRiH5frj/giphy.gif?cid=6c09b952mjuabyy9t96edicpv7vc9hpicva3hsfj8zg9gfrl&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    "img-url": "https://i.pinimg.com/564x/31/68/d1/3168d133b37391ed5ede67cdc52ba9cb.jpg",
     "show": "SpongeBob SquarePants"
+  },
+  {
+    "name": "Johnny Bravo",
+    "img-url": "https://i.redd.it/ttc519wxn3391.jpg",
+    "show": ""
   }
 ]
