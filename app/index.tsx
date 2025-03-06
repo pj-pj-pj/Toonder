@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, Image } from "react-native";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { useEffect, useRef } from "react";
 
 export default function HomeScreen() {
