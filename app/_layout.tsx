@@ -12,7 +12,7 @@ export default function RootLayout() {
         options={{ title: "Choose a Character", headerShown: false }}
       />
       <Stack.Screen
-        name="chat/[character]"
+        name="chat-screen"
         options={{ title: "Chat", headerShown: false }}
       />
     </Stack>
