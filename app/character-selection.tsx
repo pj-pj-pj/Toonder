@@ -17,7 +17,7 @@ export default function CharacterSelectionScreen() {
       </View>
 
       <View style={styles.chatlist}>
-        <Text style={styles.subtitle}>Chatbots ♡♡♡</Text>
+        <Text style={styles.subtitle}>♡ Chatbots</Text>
         <FlatList
           data={characters}
           keyExtractor={(item) => item.name}
@@ -25,7 +25,11 @@ export default function CharacterSelectionScreen() {
             <Link
               href={{
                 pathname: "/chat-screen",
-                params: { character: JSON.stringify(item) }, // Pass character data as a JSON string
+                params: {
+                  name: item.name,
+                  imgUrl: item["img-url"],
+                  show: item.show,
+                }, // Pass character data as a JSON string
               }}
               asChild
             >
@@ -68,8 +72,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 22,
+    fontWeight: 800,
     color: "#7C7B9B",
     paddingHorizontal: 23,
     paddingTop: 15,
@@ -78,19 +82,20 @@ const styles = StyleSheet.create({
   characterCard: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 6,
   },
   characterImage: {
-    width: 65,
-    height: 65,
-    borderRadius: 25,
+    width: 59,
+    height: 59,
+    borderRadius: 29,
     marginRight: 15,
   },
   characterInfo: {
     flex: 1,
   },
   characterName: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: "bold",
     color: "#7C7B9B",
   },
