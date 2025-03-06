@@ -1,12 +1,12 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { Link, router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function HomeScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/screens/CharacterSelectionScreen");
-    }, 3000);
+      router.replace("/character-selection");
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontSize: 24,
+    fontWeight: "bold",
+    color: "#fff",
   },
   footer: {
     position: "absolute",
@@ -51,10 +53,6 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 14,
-  },
-  button: {
-    fontSize: 20,
-    textDecorationLine: "underline",
-    color: "#fff",
+    color: "#F08887",
   },
 });
