@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
+import { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 
 export default function CharacterSelectionScreen() {
   return (
@@ -29,7 +31,7 @@ export default function CharacterSelectionScreen() {
                   name: item.name,
                   imgUrl: item["img-url"],
                   show: item.show,
-                }, // Pass character data as a JSON string
+                },
               }}
               asChild
             >
@@ -63,27 +65,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#7C7B9B",
   },
   header: {
-    padding: 25,
+    padding: 15,
   },
   title: {
     fontSize: 28,
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
+    marginTop: 5,
+    marginBottom: 15,
+    fontFamily: "titleFont",
   },
   subtitle: {
-    fontSize: 22,
-    fontWeight: 800,
-    color: "#7C7B9B",
-    paddingHorizontal: 23,
-    paddingTop: 15,
-    paddingBottom: 10,
+    fontSize: 20,
+    fontWeight: 700,
+    color: "white",
+    paddingHorizontal: 40,
+    padding: 10,
+    paddingTop: 8,
+    marginTop: -25,
+    margin: "auto",
+    marginBottom: 14,
+    zIndex: 999999,
+    textAlign: "center",
+    backgroundColor: "#F08887",
+    borderRadius: 20,
+    fontFamily: "contentFont",
   },
   characterCard: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 15,
-    paddingVertical: 6,
+    paddingVertical: 7,
   },
   characterImage: {
     width: 59,
@@ -98,6 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
     color: "#7C7B9B",
+    fontFamily: "contentFont",
   },
   characterShow: {
     paddingTop: 3,

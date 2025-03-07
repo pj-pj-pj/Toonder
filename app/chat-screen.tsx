@@ -11,9 +11,11 @@ import React, { useEffect, useState } from "react";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { router, useLocalSearchParams } from "expo-router";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Feather from "@expo/vector-icons/Feather";
 import Constants from "expo-constants";
 
 const apiKey = Constants.expoConfig!.extra!.API_KEY;
+// const apiKey = "fakeapi";
 // console.log(apiKey);
 if (!apiKey) {
   throw new Error(
@@ -49,10 +51,11 @@ export default function ChatScreen() {
   const [chatSession, setChatSession] = useState<any>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const initializeChat = async () => {
-      const systemPrompt = `You are a sweet gf/bf chatbot with ${name} as your persona from the show ${show}. Your responses are message-length (not very long, but not short) as if you are speaking with each other through a phone/messaging app.`;
+      const systemPrompt = `You are a sweet gf/bf chatbot with ${name} as your persona from the show ${show}. Your responses are message-length (not very long, but not short) as if you are speaking with each other through a phone/messaging app. Additionally if it's Pikachu or Groot, who doesn't say actual words or doesn't say a lot, then you don't have to nor do you have to translate their actual weird responses into sweet messages because it is normal that they don't actually talk and always be in character no matter what they say to you.`;
 
       const chat = await model.startChat({
         generationConfig,
@@ -66,10 +69,11 @@ export default function ChatScreen() {
   }, [name, show]);
 
   async function sendMessage() {
-    if (!chatSession || !userInput.trim()) return;
+    if (!chatSession || !userInput.trim() || isLoading) return;
 
     setMessages((prev) => [...prev, { sender: "You", text: userInput }]);
     setUserInput("");
+    setIsLoading(true);
 
     try {
       const result = await chatSession.sendMessage(userInput);
@@ -86,8 +90,13 @@ export default function ChatScreen() {
       console.error("Error sending message:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "System", text: "Busy. Reach me out later. XOXO" },
+        {
+          sender: "System",
+          text: "Toonder is tired. Talk to real people for now. Come back later, hun!",
+        },
       ]);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -125,7 +134,11 @@ export default function ChatScreen() {
             <Text
               key={idx}
               style={
-                msg.sender === "You" ? styles.userMessage : styles.botMessage
+                msg.sender === "You"
+                  ? styles.userMessage
+                  : msg.sender === "System"
+                  ? styles.systemMessage
+                  : styles.botMessage
               }
             >
               <Text style={styles.sender}>{msg.sender}: </Text>
@@ -135,16 +148,22 @@ export default function ChatScreen() {
         </ScrollView>
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, isLoading && { opacity: 0.5 }]}
             value={userInput}
             onChangeText={setUserInput}
             placeholder="Type a message..."
+            editable={!isLoading}
           />
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, isLoading && { backgroundColor: "#ccc" }]}
             onPress={sendMessage}
+            disabled={isLoading}
           >
-            <Text style={styles.buttonText}>Send</Text>
+            <Feather
+              name="send"
+              size={18}
+              color="#464265"
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -172,6 +191,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 500,
     color: "white",
+    fontFamily: "contentFont",
   },
   characterDetail: {
     flexDirection: "row",
@@ -191,6 +211,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginVertical: 5,
+    fontSize: 16,
   },
   botMessage: {
     alignSelf: "flex-start",
@@ -198,6 +219,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginVertical: 5,
+    fontSize: 16,
+  },
+  systemMessage: {
+    alignSelf: "flex-start",
+    backgroundColor: "#ff6b6e",
+    padding: 10,
+    borderRadius: 10,
+    marginVertical: 5,
+    fontSize: 16,
   },
   sender: {
     fontWeight: "bold",
@@ -209,12 +239,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    fontSize: 16,
     borderWidth: 1,
     borderColor: "#7F7B9C",
     padding: 12,
     borderRadius: 20,
     backgroundColor: "#fff",
-    marginBottom: 10,
     marginLeft: 7,
   },
   button: {
@@ -222,7 +252,6 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 20,
     marginLeft: 10,
-    marginBottom: 10,
     marginRight: 7,
   },
   buttonText: {

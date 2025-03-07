@@ -41,9 +41,10 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   mainText: {
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: "bold",
     color: "#fff",
+    fontFamily: "titleFont",
   },
   footer: {
     position: "absolute",
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   footerText: {
-    fontSize: 14,
+    fontSize: 18,
     color: "#F08887",
+    fontFamily: "contentFont",
   },
 });
