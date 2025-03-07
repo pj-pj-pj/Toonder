@@ -1,14 +1,26 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import { router } from "expo-router";
 import { useEffect, useRef } from "react";
+import { Alert } from "react-native";
 
 export default function HomeScreen() {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.replace("/character-selection");
-    }, 5000);
+    Alert.alert(
+      "Welcome to Toonder!",
+      "Stay connected to the internet ❤️ if there's no response, you may have hit the message limit.",
+      [
+        {
+          text: "Got it!",
+          onPress: () => {
+            const timer = setTimeout(() => {
+              router.replace("/character-selection");
+            }, 5000);
 
-    return () => clearTimeout(timer);
+            return () => clearTimeout(timer);
+          },
+        },
+      ]
+    );
   }, []);
 
   return (
