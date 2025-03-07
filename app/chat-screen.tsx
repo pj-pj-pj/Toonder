@@ -86,7 +86,7 @@ export default function ChatScreen() {
       console.error("Error sending message:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "System", text: "Error: Failed to send message." },
+        { sender: "System", text: "Busy. Reach me out later. XOXO" },
       ]);
     }
   }
