@@ -13,7 +13,6 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.mainText}>Toonder</Text>
       <Image
         source={{
           uri: "https://cdn3d.iconscout.com/3d/premium/thumb/love-robot-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--bot-cute-intelligence-pack-robotics-illustrations-6649234.png",
@@ -21,6 +20,7 @@ export default function HomeScreen() {
         style={styles.heart}
       />
       <View style={styles.footer}>
+        <Text style={styles.mainText}>Toonder</Text>
         <Text style={styles.footerText}>pj-pj-pj</Text>
       </View>
     </View>
@@ -41,10 +41,8 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   mainText: {
-    fontSize: 35,
-    fontWeight: "bold",
-    color: "#fff",
-    fontFamily: "titleFont",
+    fontSize: 17,
+    color: "#F08887",
   },
   footer: {
     position: "absolute",
@@ -53,8 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   footerText: {
-    fontSize: 18,
-    color: "#F08887",
-    fontFamily: "contentFont",
+    fontSize: 13,
+    color: "#fff",
   },
 });

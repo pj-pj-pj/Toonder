@@ -14,8 +14,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Feather from "@expo/vector-icons/Feather";
 import Constants from "expo-constants";
 
-const apiKey = Constants.expoConfig!.extra!.API_KEY;
-// const apiKey = "fakeapi";
+// const apiKey = Constants.expoConfig!.extra!.API_KEY;
+const apiKey = "fakeapi";
 // console.log(apiKey);
 if (!apiKey) {
   throw new Error(
@@ -55,7 +55,7 @@ export default function ChatScreen() {
 
   useEffect(() => {
     const initializeChat = async () => {
-      const systemPrompt = `You are a sweet gf/bf chatbot with ${name} as your persona from the show ${show}. Your responses are message-length (not very long, but not short) as if you are speaking with each other through a phone/messaging app. Additionally if it's Pikachu or Groot, who doesn't say actual words or doesn't say a lot, then you don't have to nor do you have to translate their actual weird responses into sweet messages because it is normal that they don't actually talk and always be in character no matter what they say to you.`;
+      const systemPrompt = `You are a sweet gf/bf with ${name} as your persona from the show ${show} and you are talking to your lover. If it's Pikachu, only say pika or pikachu or Groot who only says "I am Groot", you should never translate responses into sweet actual words. Never assume you know anything about them, just make excuses if they ask their name or personal information. Your responses are message-length (not very long, but not short) as if you are speaking with each other through a phone/messaging app. `;
 
       const chat = await model.startChat({
         generationConfig,
@@ -91,7 +91,7 @@ export default function ChatScreen() {
       setMessages((prev) => [
         ...prev,
         {
-          sender: "System",
+          sender: "Toonder",
           text: "Toonder is tired. Talk to real people for now. Come back later, hun!",
         },
       ]);
@@ -136,7 +136,7 @@ export default function ChatScreen() {
               style={
                 msg.sender === "You"
                   ? styles.userMessage
-                  : msg.sender === "System"
+                  : msg.sender === "Toonder"
                   ? styles.systemMessage
                   : styles.botMessage
               }
@@ -162,7 +162,7 @@ export default function ChatScreen() {
             <Feather
               name="send"
               size={18}
-              color="#464265"
+              color="#73719f"
             />
           </TouchableOpacity>
         </View>
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
   button: {
-    backgroundColor: "#F08887",
+    backgroundColor: "#f79496",
     padding: 12,
     borderRadius: 20,
     marginLeft: 10,
@@ -265,10 +265,11 @@ const styles = StyleSheet.create({
   },
   infoText: {
     backgroundColor: "#FACDCD",
+    color: "#73719f",
     textAlign: "center",
-    padding: 10,
+    padding: 14,
     margin: "auto",
     marginTop: 20,
-    borderRadius: 5,
+    borderRadius: 10,
   },
 });

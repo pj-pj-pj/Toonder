@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
-import { useEffect, useState } from "react";
-import { useFonts } from "expo-font";
 
 export default function CharacterSelectionScreen() {
   return (
@@ -19,7 +17,7 @@ export default function CharacterSelectionScreen() {
       </View>
 
       <View style={styles.chatlist}>
-        <Text style={styles.subtitle}>♡ Chatbots</Text>
+        <Text style={styles.subtitle}>❣❣ Chatbots ❣❣</Text>
         <FlatList
           data={characters}
           keyExtractor={(item) => item.name}
@@ -68,21 +66,18 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "white",
-    textAlign: "center",
-    marginTop: 5,
-    marginBottom: 15,
+    color: "#F08887",
+    marginLeft: 12,
     fontFamily: "titleFont",
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 700,
     color: "white",
-    paddingHorizontal: 40,
-    padding: 10,
-    paddingTop: 8,
+    paddingHorizontal: 30,
+    padding: 14,
+    paddingTop: 9,
     marginTop: -25,
     margin: "auto",
     marginBottom: 14,
@@ -90,17 +85,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: "#F08887",
     borderRadius: 20,
-    fontFamily: "contentFont",
+    fontFamily: "subtitleFont",
   },
   characterCard: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 15,
-    paddingVertical: 7,
+    paddingBottom: 12,
   },
   characterImage: {
-    width: 59,
-    height: 59,
+    width: 55,
+    height: 55,
     borderRadius: 29,
     marginRight: 15,
   },
@@ -108,19 +103,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   characterName: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "#7C7B9B",
+    fontSize: 18,
+    color: "#73719f",
     fontFamily: "contentFont",
   },
   characterShow: {
-    paddingTop: 3,
     fontSize: 14,
-    color: "#666",
+    color: "#a3a2b9",
   },
   chatlist: {
-    paddingVertical: 8,
-    paddingHorizontal: 6,
+    paddingHorizontal: 8,
+    paddingBottom: 70,
     fontSize: 14,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
