@@ -20,9 +20,27 @@ This project is being developed as my submission for 𝐁𝐮𝐢𝐥𝐝 𝐚 �
 - React Native (Expo)
 - AI API (whatever i see that is free and ez)
 
-## Installation & Setup
+## ❤️ Why you might love Toonder
 
-### Prerequisites
+Ever dreamed of getting a love letter from Marceline the Vampire Queen? Or maybe you want to test how Squidward would react to your flirty messages? Well, now you can.
+
+Toonder lets you chat with your favorite cartoon characters in a way you've never seen before.
+
+### Fun Things You Can Do in Toonder 🎉
+
+💌 Flirt with your favorite cartoon characters – Who knows? Maybe Betty Boop will actually flirt back. 😉
+
+🎤 Make them write you a poem – Ask Finn the Human to drop some rhymes or Jake the Dog to sing you a song.
+
+😡 Experience the grumpy love of Squidward – Don't take it personally. Squidward is just... like that.
+
+🤖 Get roasted by Princess Bubblegum – She's smart, she's sassy, and she might just call you a peasant.
+
+📝 Reach your message limit? – If you see Toonder barge in on your convo then congrats! You’ve been Toondered. (it's free api!)
+
+We have Baymax, Stitch, Ice Bear, Pikachu, Groot, Johnny Bravo and you just have to check out the others cause this is getting long.
+
+## Installation & Setup
 
 Ensure you have the following installed:
 
@@ -72,3 +90,5 @@ eas build --platform android --profile production --type archive
 - ❌ Basic messaging flow (no media, images, or voice support).
 - ❌ UI could do better.
 - ❌ Message limit.
+- ❌ A lot more I can't think of right now.
+- ❌ Text input -> it doesn't wrap text so typing long messages is 🙅‍♀️ bad.
