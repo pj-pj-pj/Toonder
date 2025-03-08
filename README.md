@@ -8,6 +8,8 @@ This project is being developed as my submission for 𝐁𝐮𝐢𝐥𝐝 𝐚 �
 
 [Figma Link](https://www.figma.com/design/FrZtZYkOmOYsVvo40gvfCn/toonder?node-id=0-1&p=f&t=vI8sVpNjrz3KJfyV-0)
 
+All Rights Reserved.  
+
 ## Features
 
 - List of Cartoon characters (romantic chatbot) to choose from.
