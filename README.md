@@ -84,7 +84,7 @@ eas build --platform android --profile production --type archive
 
 --- btw you need eas account for build
 
-## Limitations & Future Improvements
+## Limitations
 
 - ❌ No real backend (chat history is not even stored, no asyncstorage 2muchw0rk).
 - ❌ Basic messaging flow (no media, images, or voice support).
