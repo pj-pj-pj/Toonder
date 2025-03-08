@@ -40,6 +40,15 @@ Toonder lets you chat with your favorite cartoon characters in a way you've neve
 
 We have Baymax, Stitch, Ice Bear, Pikachu, Groot, Johnny Bravo and you just have to check out the others cause this is getting long.
 
+### Screenshots
+
+<img src="assets/screenshots/01.png" height="250">
+<img src="assets/screenshots/02.png" height="250">
+<img src="assets/screenshots/05.png" height="250">
+<img src="assets/screenshots/03.png" height="250">
+<img src="assets/screenshots/08.png" height="250">
+<img src="assets/screenshots/06.png" height="250">
+
 ## Installation & Setup
 
 Ensure you have the following installed:
