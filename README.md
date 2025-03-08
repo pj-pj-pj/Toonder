@@ -42,12 +42,14 @@ We have Baymax, Stitch, Ice Bear, Pikachu, Groot, Johnny Bravo and you just have
 
 ### Screenshots
 
-<img src="assets/screenshots/01.png" height="250">
-<img src="assets/screenshots/02.png" height="250">
-<img src="assets/screenshots/05.png" height="250">
-<img src="assets/screenshots/03.png" height="250">
-<img src="assets/screenshots/08.png" height="250">
-<img src="assets/screenshots/06.png" height="250">
+<p align="center">
+  <img src="assets/screenshots/01.png" height="250">
+  <img src="assets/screenshots/02.png" height="250">
+  <img src="assets/screenshots/05.png" height="250">
+  <img src="assets/screenshots/03.png" height="250">
+  <img src="assets/screenshots/08.png" height="250">
+  <img src="assets/screenshots/06.png" height="250">
+</p>
 
 ## Installation & Setup
 
