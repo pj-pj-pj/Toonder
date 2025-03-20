@@ -3,6 +3,20 @@ import { router } from "expo-router";
 import { useEffect, useRef } from "react";
 import { Alert } from "react-native";
 
+const taglines = [
+  "Fall in love with your favorite cartoons—one message at a time.",
+  "Where cartoon crushes come to life.",
+  "Flirt, chat, and dream with your animated soulmates.",
+  "Romance reimagined—chat with your cartoon fantasies.",
+  "Your favorite characters, your love story.",
+  "Love letters from your animated crushes.",
+  "Chat with cartoons, spark a romance.",
+  "Where cartoons meet romance.",
+  "Unleash your inner cartoon lover.",
+  "Flirty chats with your favorite animated characters.",
+];
+const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+
 export default function HomeScreen() {
   useEffect(() => {
     Alert.alert(
@@ -14,7 +28,7 @@ export default function HomeScreen() {
           onPress: () => {
             const timer = setTimeout(() => {
               router.replace("/character-selection");
-            }, 5000);
+            }, 1700);
 
             return () => clearTimeout(timer);
           },
@@ -31,8 +45,10 @@ export default function HomeScreen() {
         }}
         style={styles.heart}
       />
+      <Text style={styles.mainText}>Toonder</Text>
+      <Text style={styles.tagline}>{randomTagline}</Text>
+
       <View style={styles.footer}>
-        <Text style={styles.mainText}>Toonder</Text>
         <Text style={styles.footerText}>pj-pj-pj</Text>
       </View>
     </View>
@@ -49,12 +65,21 @@ const styles = StyleSheet.create({
   heart: {
     height: 200,
     width: 200,
-    margin: 15,
+    margin: 25,
     opacity: 0.7,
   },
   mainText: {
-    fontSize: 17,
+    fontSize: 19,
     color: "#F08887",
+    fontWeight: "bold",
+  },
+  tagline: {
+    fontSize: 16,
+    color: "#fff",
+    paddingHorizontal: 35,
+    paddingVertical: 7,
+    textAlign: "center",
+    textAlignVertical: "center",
   },
   footer: {
     position: "absolute",
@@ -64,6 +89,6 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 13,
-    color: "#fff",
+    color: "#F08887",
   },
 });
