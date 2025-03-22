@@ -15,9 +15,16 @@ export default function CharacterSelectionScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>Toonder</Text>
       </View>
-
+      <View style={styles.nav}>
+        <Text style={styles.subtitle}>Chatbots</Text>
+        <TouchableOpacity>
+          <Text style={styles.subtitleInactive}>Feature 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.subtitleInactive}>Feature 2</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.chatlist}>
-        <Text style={styles.subtitle}>❣❣ Chatbots ❣❣</Text>
         <FlatList
           data={characters}
           keyExtractor={(item) => item.name}
@@ -63,7 +70,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#7C7B9B",
   },
   header: {
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+  },
+  nav: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 55,
+    alignItems: "center",
+    paddingBottom: 2,
   },
   title: {
     fontSize: 22,
@@ -73,19 +89,28 @@ const styles = StyleSheet.create({
     fontFamily: "titleFont",
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 15,
     color: "white",
-    paddingHorizontal: 30,
-    padding: 14,
+    paddingHorizontal: 20,
     paddingTop: 9,
-    marginTop: -25,
-    margin: "auto",
-    marginBottom: 14,
+    paddingBottom: 10,
+    marginTop: -10,
+    marginBottom: -52,
     zIndex: 999999,
     textAlign: "center",
     backgroundColor: "#F08887",
-    borderRadius: 20,
+    borderRadius: 18,
     fontFamily: "subtitleFont",
+  },
+  subtitleInactive: {
+    fontSize: 15,
+    color: "#bfbfbf",
+    textAlign: "center",
+    borderRadius: 18,
+    fontFamily: "subtitleFont",
+    paddingHorizontal: 20,
+    paddingTop: 9,
+    paddingBottom: 10,
   },
   characterCard: {
     flexDirection: "row",
@@ -94,8 +119,8 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   characterImage: {
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
     borderRadius: 29,
     marginRight: 15,
   },
@@ -103,7 +128,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   characterName: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#73719f",
     fontFamily: "contentFont",
   },
@@ -113,8 +138,8 @@ const styles = StyleSheet.create({
   },
   chatlist: {
     paddingHorizontal: 8,
-    paddingBottom: 70,
-    fontSize: 14,
+    paddingBottom: 80,
+    paddingTop: 26,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     backgroundColor: "white",
