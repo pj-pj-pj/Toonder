@@ -1,13 +1,53 @@
 [
   {
-    "name": "Betty Boop",
-    "img-url": "https://www.diamondartclub.com/cdn/shop/products/betty-boop-pose-diamond-art-painting-30535127105729.jpg?v=1631434953&width=3000",
-    "show": ""
+    "name": "Jessica Rabbit",
+    "img-url": "https://i.ebayimg.com/images/g/sxkAAOSwM21jKp-r/s-l1200.jpg",
+    "show": "Who Framed Roger Rabbit"
+  },
+  {
+    "name": "Roger Rabbit",
+    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPZhm9cL9NgVK24sDuKGeXj4kj9zmlyblfZw&s",
+    "show": "Who Framed Roger Rabbit"
   },
   {
     "name": "Marceline the Vampire Queen",
     "img-url": "https://i.pinimg.com/736x/68/d7/24/68d724cc7cc064651625f6673e9b0c78.jpg",
     "show": "Adventure Time"
+  },
+  {
+    "name": "Johnny Bravo",
+    "img-url": "https://i.redd.it/ttc519wxn3391.jpg",
+    "show": ""
+  },
+  {
+    "name": "Groot",
+    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNo9iAiy-ZfXDkGpBQncfOkh6KaGSssBwteA&s",
+    "show": "Guardians of the Galaxy"
+  },
+  {
+    "name": "Vergil",
+    "img-url": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2019/08/Devil-May-Cry-Vergil.jpg",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Trish",
+    "img-url": "https://thumbs.modthesims2.com/img/5/5/3/1/8/MTS_thunderbreak-725645-TrishAndPizza.jpg?cb=1204663324",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Dante",
+    "img-url": "https://assetsio.gnwcdn.com/dmc4_dante_cassanova.jpg.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Nero",
+    "img-url": "https://preview.redd.it/is-it-just-me-or-do-i-find-nero-to-look-like-a-retired-emo-v0-aadno5m8k4y91.jpg?width=640&crop=smart&auto=webp&s=a02177f2f735b66c10f927ea1e20601eda233e15",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Chel",
+    "img-url": "https://imgix.ranker.com/user_node_img/3838/76758631/original/chel-u3?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&w=500",
+    "show": "The Road to El Dorado"
   },
   {
     "name": "Catwoman",
@@ -20,6 +60,11 @@
     "show": "SpongeBob SquarePants"
   },
   {
+    "name": "Betty Boop",
+    "img-url": "https://www.diamondartclub.com/cdn/shop/products/betty-boop-pose-diamond-art-painting-30535127105729.jpg?v=1631434953&width=3000",
+    "show": ""
+  },
+  {
     "name": "Squidward",
     "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTebV7b5ZxYAgja5kbmQRv_diUjfKOF4yXYoA&s",
     "show": "SpongeBob SquarePants"
@@ -30,19 +75,19 @@
     "show": "Adventure Time"
   },
   {
-    "name": "Sara Bellum",
-    "img-url": "https://live.staticflickr.com/4120/4850537403_3c279ab8ae_b.jpg",
-    "show": "Powerpuff Girls"
+    "name": "Homer Simpson",
+    "img-url": "https://i.pinimg.com/736x/ff/14/b8/ff14b8fb4ca537e24aebb1f77561191b.jpg",
+    "show": "The Simpsons"
   },
   {
-    "name": "Johnny Bravo",
-    "img-url": "https://i.redd.it/ttc519wxn3391.jpg",
+    "name": "Shrek",
+    "img-url": "https://i.pinimg.com/736x/06/ec/3a/06ec3a377ebc3f2ba2bc4ca0d7145289.jpg",
     "show": ""
   },
   {
-    "name": "Groot",
-    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNo9iAiy-ZfXDkGpBQncfOkh6KaGSssBwteA&s",
-    "show": "Guardians of the Galaxy"
+    "name": "Sara Bellum",
+    "img-url": "https://live.staticflickr.com/4120/4850537403_3c279ab8ae_b.jpg",
+    "show": "Powerpuff Girls"
   },
   {
     "name": "Pikachu",
@@ -78,5 +123,25 @@
     "name": "Stitch",
     "img-url": "https://pyxis.nymag.com/v1/imgs/563/5c3/3e2746c1ccd37dea8499d7d559c4ab6a26-stitch.2x.rsocial.w600.jpg",
     "show": "Lilo & Stitch"
+  },
+  {
+    "name": "Rapunzel",
+    "img-url": "https://variety.com/wp-content/uploads/2024/12/tangled.jpg",
+    "show": "Tangled"
+  },
+  {
+    "name": "Lucy Loud",
+    "img-url": "https://carboncostume.com/wordpress/wp-content/uploads/2021/07/lucyloud-theloudhouse-character.jpg",
+    "show": "The Loud House"
+  },
+  {
+    "name": "Stewie Griffin",
+    "img-url": "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2018/05/longroom-com-stewie-submissive.jpg?q=50&fit=crop&w=825&dpr=1.5",
+    "show": "Family Guy"
+  },
+  {
+    "name": "Ariel",
+    "img-url": "https://i.ebayimg.com/images/g/MQgAAOSwlcBlKwNM/s-l1200.jpg",
+    "show": "The Little Mermaid"
   }
 ]
