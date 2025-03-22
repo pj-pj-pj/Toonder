@@ -1,7 +1,8 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import { router } from "expo-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Alert } from "react-native";
+import { AnimatedLikeButton } from "@/components/AnimatedLikeButton";
 
 const taglines = [
   "Fall in love with your favorite cartoons—one message at a time.",
@@ -18,36 +19,50 @@ const taglines = [
 const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
 
 export default function HomeScreen() {
-  useEffect(() => {
-    Alert.alert(
-      "Welcome to Toonder!",
-      "Stay connected to the internet ❤️ if there's no response, you may have hit the message limit.",
-      [
-        {
-          text: "Got it!",
-          onPress: () => {
-            const timer = setTimeout(() => {
-              router.replace("/character-selection");
-            }, 1700);
+  const [showInstruction, setShowInstruction] = useState(false);
+  const primaryColor = "#000000";
+  const accentColor = "#e54645";
 
-            return () => clearTimeout(timer);
-          },
-        },
-      ]
-    );
-  }, []);
+  function handleOnPress() {
+    setTimeout(() => {
+      router.replace("/character-selection");
+    }, 1000);
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setShowInstruction(true);
+    }, 2000);
+
+    return () => clearInterval(timer);
+  });
 
   return (
     <View style={styles.container}>
+      <Text style={styles.mainText}>Toonder</Text>
+      <Text style={styles.tagline}>
+        Stay connected to the internet. If there's no response, you may have hit
+        the message limit.
+      </Text>
       <Image
         source={{
           uri: "https://cdn3d.iconscout.com/3d/premium/thumb/love-robot-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--bot-cute-intelligence-pack-robotics-illustrations-6649234.png",
         }}
         style={styles.heart}
       />
-      <Text style={styles.mainText}>Toonder</Text>
-      <Text style={styles.tagline}>{randomTagline}</Text>
 
+      <View style={styles.note}>
+        <Text style={styles.heartDecor}>💘💘💘</Text>
+        <Text style={styles.tagline}>{randomTagline}</Text>
+      </View>
+      <AnimatedLikeButton
+        primary={primaryColor}
+        accent={accentColor}
+        onPress={handleOnPress}
+      />
+      {showInstruction && (
+        <Text style={styles.tagline}>Click the 💗 Button to get started!</Text>
+      )}
       <View style={styles.footer}>
         <Text style={styles.footerText}>pj-pj-pj</Text>
       </View>
@@ -61,6 +76,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#7F7B9C",
+  },
+  note: {
+    alignItems: "center",
+    backgroundColor: "#6b6691",
+    borderRadius: 10,
+    paddingBottom: 15,
+    marginTop: 30,
+    marginBottom: 50,
+    marginHorizontal: 15,
+  },
+  heartDecor: {
+    marginTop: -14,
+    fontSize: 25,
   },
   heart: {
     height: 200,
