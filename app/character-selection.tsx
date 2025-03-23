@@ -5,12 +5,18 @@ import {
   Image,
   Text,
   StyleSheet,
+  TextInput,
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
 import { BotMessageSquare } from "lucide-react-native";
+import { Searchbar } from "react-native-paper";
+import { useRef, useState } from "react";
 
 export default function CharacterSelectionScreen() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchBarRef = useRef<TextInput>(null);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -32,7 +38,30 @@ export default function CharacterSelectionScreen() {
           <Text style={styles.subtitleInactive}>Feature 2</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.chatlist}>
+        <Searchbar
+          ref={searchBarRef}
+          placeholder="Search"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+          iconColor="#7C7B9B"
+          placeholderTextColor="#a3a2b9"
+          onClearIconPress={() => {
+            setSearchQuery("");
+            searchBarRef.current?.blur();
+          }}
+          inputStyle={{
+            padding: -10,
+            marginVertical: -20,
+            marginHorizontal: -10,
+          }}
+          style={{
+            height: 38,
+            marginHorizontal: 10,
+            marginBottom: 10,
+          }}
+        />
         <FlatList
           data={characters}
           keyExtractor={(item) => item.name}
