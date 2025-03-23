@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
-import { BotMessageSquare } from "lucide-react-native";
+import { Blocks, BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
 import { Searchbar } from "react-native-paper";
 import { useRef, useState } from "react";
 
@@ -27,19 +27,35 @@ export default function CharacterSelectionScreen() {
         <Text style={styles.title}>Toonder</Text>
       </View>
       <View style={styles.nav}>
+        <TouchableOpacity>
+          <Text style={styles.subtitleInactive}>
+            <ScanHeart
+              size={15}
+              strokeWidth={1.5}
+              color={"#e6e6e6"}
+              style={{ paddingHorizontal: 15 }}
+            />
+            Love Exam
+          </Text>
+        </TouchableOpacity>
         <View style={styles.subtitle}>
           <BotMessageSquare
             size={15}
             strokeWidth={1.5}
             color={"white"}
           />
-          <Text style={{ color: "white" }}>Chatbots</Text>
+          <Text style={{ color: "white", fontSize: 16 }}>Chatbots</Text>
         </View>
         <TouchableOpacity>
-          <Text style={styles.subtitleInactive}>Feature 1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.subtitleInactive}>Feature 2</Text>
+          <Text style={styles.subtitleInactive}>
+            <Grid
+              size={15}
+              strokeWidth={1.5}
+              color={"#e6e6e6"}
+              style={{ paddingHorizontal: 15 }}
+            />
+            Play Cards
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -118,7 +134,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 55,
+    margin: "auto",
     alignItems: "center",
     paddingBottom: 2,
   },
@@ -130,7 +146,6 @@ const styles = StyleSheet.create({
     fontFamily: "titleFont",
   },
   subtitle: {
-    fontSize: 15,
     color: "white",
     paddingHorizontal: 15,
     paddingTop: 9,
@@ -146,8 +161,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   subtitleInactive: {
-    fontSize: 15,
-    color: "#bfbfbf",
+    fontSize: 16,
+    color: "#e6e6e6",
     textAlign: "center",
     borderRadius: 18,
     fontFamily: "subtitleFont",
