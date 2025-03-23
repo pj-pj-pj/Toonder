@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 import { router } from "expo-router";
-import { useEffect, useRef, useState } from "react";
-import { Alert } from "react-native";
+import { useEffect, useState } from "react";
 import { AnimatedLikeButton } from "@/components/AnimatedLikeButton";
+import { ActivityIndicator } from "react-native-paper";
 
 const taglines = [
   "Fall in love with your favorite cartoons—one message at a time.",
@@ -16,12 +16,14 @@ const taglines = [
   "Unleash your inner cartoon lover.",
   "Flirty chats with your favorite animated characters.",
 ];
-const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+let randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
 
 export default function HomeScreen() {
-  const [showInstruction, setShowInstruction] = useState(false);
-  const primaryColor = "#000000";
-  const accentColor = "#e54645";
+  const [isShowButton, setIsShowButton] = useState(false);
+  const [tagline, setTagline] = useState(randomTagline);
+  const [isShowInstruction, setIsShowInstruction] = useState(false);
+  const primaryColor = "#282828";
+  const accentColor = "#e56766";
 
   function handleOnPress() {
     setTimeout(() => {
@@ -31,10 +33,22 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setShowInstruction(true);
-    }, 2000);
+      setIsShowButton(true);
+    }, 1400);
 
-    return () => clearInterval(timer);
+    const taglineTimer = setInterval(() => {
+      setTagline(taglines[Math.floor(Math.random() * taglines.length)]);
+    }, 1900);
+
+    const isntructionTimer = setInterval(() => {
+      setIsShowInstruction(true);
+    }, 5000);
+
+    return () => {
+      clearInterval(timer);
+      clearInterval(taglineTimer);
+      clearInterval(isntructionTimer);
+    };
   });
 
   return (
@@ -53,16 +67,27 @@ export default function HomeScreen() {
 
       <View style={styles.note}>
         <Text style={styles.heartDecor}>💘💘💘</Text>
-        <Text style={styles.tagline}>{randomTagline}</Text>
+        <Text style={styles.tagline}>{tagline}</Text>
       </View>
-      <AnimatedLikeButton
-        primary={primaryColor}
-        accent={accentColor}
-        onPress={handleOnPress}
-      />
-      {showInstruction && (
-        <Text style={styles.tagline}>Click the 💗 Button to get started!</Text>
+
+      {isShowButton ? (
+        <AnimatedLikeButton
+          primary={primaryColor}
+          accent={accentColor}
+          onPress={handleOnPress}
+        />
+      ) : (
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color={"#F08887"}
+        />
       )}
+
+      {isShowInstruction && (
+        <Text style={styles.tagline}>Click the 💗 to get started!</Text>
+      )}
+
       <View style={styles.footer}>
         <Text style={styles.footerText}>pj-pj-pj</Text>
       </View>
@@ -97,7 +122,7 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   mainText: {
-    fontSize: 19,
+    fontSize: 24,
     color: "#F08887",
     fontWeight: "bold",
   },

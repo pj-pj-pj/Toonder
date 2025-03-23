@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -23,6 +23,23 @@ export const AnimatedLikeButton = ({ primary, accent, onPress }: Props) => {
   const scale = useSharedValue(1);
   const isLiked = useSharedValue(true);
   const [iconColor, setIconColor] = useState(primary);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      scale.value = withSpring(
+        1.2,
+        {
+          damping: 2,
+          stiffness: 150,
+        },
+        () => {
+          scale.value = withSpring(1);
+        }
+      );
+    }, 1200);
+
+    return () => clearInterval(timer);
+  });
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
