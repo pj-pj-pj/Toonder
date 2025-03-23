@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
+import { BotMessageSquare } from "lucide-react-native";
 
 export default function CharacterSelectionScreen() {
   return (
@@ -16,7 +17,14 @@ export default function CharacterSelectionScreen() {
         <Text style={styles.title}>Toonder</Text>
       </View>
       <View style={styles.nav}>
-        <Text style={styles.subtitle}>Chatbots</Text>
+        <View style={styles.subtitle}>
+          <BotMessageSquare
+            size={15}
+            strokeWidth={1.5}
+            color={"white"}
+          />
+          <Text style={{ color: "white" }}>Chatbots</Text>
+        </View>
         <TouchableOpacity>
           <Text style={styles.subtitleInactive}>Feature 1</Text>
         </TouchableOpacity>
@@ -91,7 +99,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 15,
     color: "white",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingTop: 9,
     paddingBottom: 10,
     marginTop: -10,
@@ -101,6 +109,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F08887",
     borderRadius: 18,
     fontFamily: "subtitleFont",
+    flexDirection: "row",
+    gap: 5,
   },
   subtitleInactive: {
     fontSize: 15,
