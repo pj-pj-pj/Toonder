@@ -17,6 +17,10 @@ export default function CharacterSelectionScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const searchBarRef = useRef<TextInput>(null);
 
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -63,7 +67,7 @@ export default function CharacterSelectionScreen() {
           }}
         />
         <FlatList
-          data={characters}
+          data={filteredCharacters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <Link
