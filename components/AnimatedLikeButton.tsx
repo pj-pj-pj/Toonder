@@ -36,7 +36,7 @@ export const AnimatedLikeButton = ({ primary, accent, onPress }: Props) => {
           scale.value = withSpring(1);
         }
       );
-    }, 1200);
+    }, 2000);
 
     return () => clearInterval(timer);
   });
