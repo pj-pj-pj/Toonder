@@ -60,6 +60,14 @@ export default function PlayCardsScreen() {
   const [winMessage, setWinMessage] = useState(new Animated.Value(0));
   const [gameWon, setGameWon] = useState(false);
   const [isGameStart, setGameStart] = useState(false);
+  const [isShowCards, setIsShowCards] = useState(false);
+
+  function showCardsForOne() {
+    setIsShowCards(true);
+    setTimeout(() => {
+      setIsShowCards(false);
+    }, 1200);
+  }
 
   const cardClickFunction = (card: GameCard) => {
     if (!gameWon && selectedCards.length < 2 && !card.isFlipped) {
@@ -292,12 +300,18 @@ export default function PlayCardsScreen() {
                           card.isFlipped && styles.cardFlipped,
                         ]}
                         onPress={() => cardClickFunction(card)}
+                        disabled={isShowCards}
                       >
-                        {card.isFlipped ? (
+                        {isShowCards ? (
                           <Image
                             style={styles.img}
                             source={{ uri: card.imgUrl }}
-                          ></Image>
+                          />
+                        ) : card.isFlipped ? (
+                          <Image
+                            style={styles.img}
+                            source={{ uri: card.imgUrl }}
+                          />
                         ) : null}
                       </TouchableOpacity>
                     ))}
@@ -355,7 +369,10 @@ export default function PlayCardsScreen() {
                   marginTop: 15,
                   borderRadius: 25,
                 }}
-                onPress={() => setGameStart(!isGameStart)}
+                onPress={() => {
+                  setGameStart(!isGameStart);
+                  showCardsForOne();
+                }}
               >
                 <Text
                   style={{
