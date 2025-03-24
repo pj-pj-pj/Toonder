@@ -8,6 +8,10 @@ export default function RootLayout() {
         options={{ title: "Welcome", headerShown: false }}
       />
       <Stack.Screen
+        name="profile-setup"
+        options={{ title: "Profile Setup", headerShown: false }}
+      />
+      <Stack.Screen
         name="character-selection"
         options={{ title: "Choose a Character", headerShown: false }}
       />
