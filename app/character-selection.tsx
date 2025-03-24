@@ -9,17 +9,34 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import characters from "../constants/characters.json";
-import { Blocks, BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
+import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
 import { Searchbar } from "react-native-paper";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CharacterSelectionScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const searchBarRef = useRef<TextInput>(null);
+  const [profile, setProfile] = useState<any>(null);
 
   const filteredCharacters = characters.filter((character) =>
     character.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const storedProfile = await AsyncStorage.getItem("userProfile");
+        if (storedProfile !== null) {
+          setProfile(JSON.parse(storedProfile));
+        }
+      } catch (error) {
+        console.error("Error loading profile:", error);
+      }
+    };
+
+    loadProfile();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -93,6 +110,8 @@ export default function CharacterSelectionScreen() {
                   name: item.name,
                   imgUrl: item["img-url"],
                   show: item.show,
+                  userName: profile?.name || "Unknown",
+                  userAge: profile?.age || "Unknown",
                 },
               }}
               asChild
