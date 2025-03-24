@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import characters from "../constants/characters.json";
 import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
 import { Searchbar } from "react-native-paper";
@@ -44,7 +44,7 @@ export default function CharacterSelectionScreen() {
         <Text style={styles.title}>Toonder</Text>
       </View>
       <View style={styles.nav}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.replace("/love-exam")}>
           <Text style={styles.subtitleInactive}>
             <ScanHeart
               size={15}
@@ -63,7 +63,7 @@ export default function CharacterSelectionScreen() {
           />
           <Text style={{ color: "white", fontSize: 16 }}>Chatbots</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.replace("/play-cards")}>
           <Text style={styles.subtitleInactive}>
             <Grid
               size={15}
