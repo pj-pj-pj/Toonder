@@ -1,17 +1,23 @@
 import { AnimatedLikeButton } from "@/components/AnimatedLikeButton";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image, TextInput, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileSetupScreen() {
-  const [profile, setProfile] = useState({ name: "", age: 16 });
+  const [profile, setProfile] = useState({ name: "", age: "" });
   const [inputName, setInputName] = useState("");
   const [inputAge, setInputAge] = useState("");
   const [stage, setStage] = useState(2);
 
   const primaryColor = "#282828";
   const accentColor = "#e56766";
+
+  useEffect(() => {
+    if (profile.name && profile.age) {
+      saveProfile();
+    }
+  }, [profile]);
 
   function handleOnPressName() {
     if (inputName.trim() === "") {
@@ -40,26 +46,7 @@ export default function ProfileSetupScreen() {
       return;
     }
 
-    if (age > 99) {
-      Alert.alert(
-        "Okay. Stop!",
-        "You know what, it doesn't matter. You're fine. I actually don't care."
-      );
-
-      Alert.alert("Toonder is not for you!", "Go away, old person.");
-
-      setProfile((prev) => ({ ...prev, age: age }));
-
-      setTimeout(() => {
-        saveProfile();
-        return;
-      }, 1000);
-    }
-
-    setTimeout(() => {
-      saveProfile();
-      return;
-    }, 1000);
+    setProfile((prev) => ({ ...prev, age: inputAge }));
   }
 
   const saveProfile = async () => {
@@ -67,7 +54,9 @@ export default function ProfileSetupScreen() {
 
     Alert.alert(
       "Toonder Profile saved!",
-      `Your name is ${profile.name} and you are ${profile.age} years old.`,
+      `Your name is ${profile.name} and you are ${profile.age} years old. ${
+        parseInt(profile.age) > 70 && `(Aren't you way too old? Anyway...)`
+      }`,
       [{ text: "OK", onPress: () => router.replace("/character-selection") }]
     );
   };
@@ -117,7 +106,7 @@ export default function ProfileSetupScreen() {
             <Text style={styles.heartDecor}>💘</Text>
             <TextInput
               style={{ marginHorizontal: 15, color: "white", fontSize: 18 }}
-              placeholder="16-99"
+              placeholder="16-99+"
               placeholderTextColor={"#a3a2b9"}
               autoFocus
               cursorColor={"#F08887"}
