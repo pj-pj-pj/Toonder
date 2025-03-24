@@ -153,6 +153,7 @@ export default function ChatScreen() {
             onChangeText={setUserInput}
             placeholder="Type a message..."
             editable={!isLoading}
+            multiline
           />
           <TouchableOpacity
             style={[styles.button, isLoading && { backgroundColor: "#ccc" }]}
