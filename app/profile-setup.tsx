@@ -2,6 +2,7 @@ import { AnimatedLikeButton } from "@/components/AnimatedLikeButton";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View, StyleSheet, Image, TextInput, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ProfileSetupScreen() {
   const [profile, setProfile] = useState({ name: "", age: 16 });
@@ -50,18 +51,26 @@ export default function ProfileSetupScreen() {
       setProfile((prev) => ({ ...prev, age: age }));
 
       setTimeout(() => {
-        router.replace("/character-selection");
-
+        saveProfile();
         return;
       }, 1000);
     }
 
-    setProfile((prev) => ({ ...prev, age: age }));
-
     setTimeout(() => {
-      router.replace("/character-selection");
+      saveProfile();
+      return;
     }, 1000);
   }
+
+  const saveProfile = async () => {
+    await AsyncStorage.setItem("userProfile", JSON.stringify(profile));
+
+    Alert.alert(
+      "Toonder Profile saved!",
+      `Your name is ${profile.name} and you are ${profile.age} years old.`,
+      [{ text: "OK", onPress: () => router.replace("/character-selection") }]
+    );
+  };
 
   return (
     <View style={styles.container}>
