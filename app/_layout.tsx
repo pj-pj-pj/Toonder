@@ -19,6 +19,14 @@ export default function RootLayout() {
         name="chat-screen"
         options={{ title: "Chat", headerShown: false }}
       />
+      <Stack.Screen
+        name="play-cards"
+        options={{ title: "Play Cards", headerShown: false }}
+      />
+      <Stack.Screen
+        name="love-exam"
+        options={{ title: "Love Exam", headerShown: false }}
+      />
     </Stack>
   );
 }
