@@ -1,8 +1,9 @@
-import { Text, View, StyleSheet, Image, Pressable } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { AnimatedLikeButton } from "@/components/AnimatedLikeButton";
 import { ActivityIndicator } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const taglines = [
   "Fall in love with your favorite cartoons—one message at a time.",
@@ -25,11 +26,23 @@ export default function HomeScreen() {
   const primaryColor = "#282828";
   const accentColor = "#e56766";
 
-  function handleOnPress() {
-    setTimeout(() => {
-      router.replace("/character-selection");
-    }, 1000);
-  }
+  const handleOnPress = async () => {
+    try {
+      const storedProfile = await AsyncStorage.getItem("userProfile");
+      const destination = storedProfile
+        ? "/character-selection"
+        : "/profile-setup";
+
+      setTimeout(() => {
+        router.replace(destination);
+      }, 800);
+    } catch (error) {
+      console.error("Error checking profile:", error);
+      setTimeout(() => {
+        router.replace("/profile-setup");
+      }, 800);
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
