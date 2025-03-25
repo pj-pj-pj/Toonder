@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 15,
     paddingTop: 15,
+    paddingBottom: 5,
   },
   nav: {
     display: "flex",
