@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Image,
 } from "react-native";
 import { Link, router } from "expo-router";
 import file from "../constants/quizCharacters.json";
@@ -99,7 +98,9 @@ export default function LoveExamScreen() {
       router.push({
         pathname: "/exam-screen",
         params: {
-          character: JSON.stringify(character),
+          name: character.name,
+          imgUrl: character["img-url"],
+          show: character.show,
           triesLeft: remainingTries,
         },
       });
@@ -184,48 +185,48 @@ export default function LoveExamScreen() {
           data={characters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
-            <Link
-              href={{
-                pathname: "/character-selection",
-                params: {
-                  name: item.name,
-                  imgUrl: item["img-url"],
-                  show: item.show,
-                },
-              }}
-              asChild
-            >
-              <TouchableOpacity>
-                <Card
+            // <Link
+            //   href={{
+            //     pathname: "/exam-screen",
+            //     params: {
+            //       name: item.name,
+            //       imgUrl: item["img-url"],
+            //       show: item.show,
+            //     },
+            //   }}
+            //   asChild
+            // >
+            <TouchableOpacity onPress={() => handleExamStart(item)}>
+              <Card
+                style={{
+                  marginBottom: 10,
+                }}
+                mode="contained"
+              >
+                <Card.Cover
                   style={{
-                    marginBottom: 10,
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                   }}
-                  mode="contained"
-                >
-                  <Card.Cover
-                    style={{
-                      borderBottomLeftRadius: 0,
-                      borderBottomRightRadius: 0,
-                    }}
-                    source={{ uri: item["img-url"] }}
-                  />
-                  <Card.Title
-                    subtitle="Card Title"
-                    subtitleVariant="bodyLarge"
-                    titleStyle={{ minHeight: 0 }}
-                    title={item.name}
-                    titleVariant="bodySmall"
-                    right={() => (
-                      <IconButton
-                        size={30}
-                        icon="arrow-right-circle"
-                        onPress={() => {}}
-                      />
-                    )}
-                  />
-                </Card>
-              </TouchableOpacity>
-            </Link>
+                  source={{ uri: item["img-url"] }}
+                />
+                <Card.Title
+                  subtitle="Card Title"
+                  subtitleVariant="bodyLarge"
+                  titleStyle={{ minHeight: 0 }}
+                  title={item.name}
+                  titleVariant="bodySmall"
+                  right={() => (
+                    <IconButton
+                      size={30}
+                      icon="arrow-right-circle"
+                      onPress={() => {}}
+                    />
+                  )}
+                />
+              </Card>
+            </TouchableOpacity>
+            // </Link>
           )}
         />
       </View>
