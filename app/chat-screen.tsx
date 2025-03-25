@@ -146,6 +146,22 @@ export default function ChatScreen() {
             </Text>
           ))}
         </ScrollView>
+        {isLoading && (
+          <Text
+            style={{
+              color: "#7F7B9C",
+              paddingHorizontal: 15,
+              paddingVertical: 6,
+              marginHorizontal: "auto",
+              textAlign: "center",
+              backgroundColor: "#E1DFF0",
+              borderRadius: 25,
+              marginBottom: 5,
+            }}
+          >
+            {name} is typing...
+          </Text>
+        )}
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.input, isLoading && { opacity: 0.5 }]}
