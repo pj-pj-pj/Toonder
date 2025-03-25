@@ -1,13 +1,42 @@
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import { router } from "expo-router";
-import characters from "../constants/characters.json";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+} from "react-native";
+import { Link, router } from "expo-router";
+import characters from "../constants/quizCharacters.json";
 import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
+import { Avatar, Card, IconButton } from "react-native-paper";
 
 export default function LoveExamScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Toonder</Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            gap: 30,
+          }}
+        >
+          <Text
+            style={{
+              color: "#7F7B9C",
+              textAlign: "center",
+              padding: 5,
+              paddingHorizontal: 20,
+              backgroundColor: "#E1DFF0",
+              borderRadius: 25,
+            }}
+          >
+            Exam Tries: 0/3
+          </Text>
+        </View>
       </View>
       <View style={styles.nav}>
         <TouchableOpacity
@@ -44,7 +73,69 @@ export default function LoveExamScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.chatlist}></View>
+      <View style={styles.mainContent}>
+        <Text
+          style={{
+            color: "#7F7B9C",
+            textAlign: "center",
+            padding: 5,
+            paddingHorizontal: 20,
+            borderRadius: 25,
+          }}
+        >
+          Today, Marceline Abadeer and Johnny Bravo prepared a special quiz for
+          you!
+        </Text>
+        <FlatList
+          style={{ borderRadius: 10 }}
+          data={characters}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <Link
+              href={{
+                pathname: "/character-selection",
+                params: {
+                  name: item.name,
+                  imgUrl: item["img-url"],
+                  show: item.show,
+                },
+              }}
+              asChild
+            >
+              <TouchableOpacity>
+                <Card
+                  style={{
+                    marginTop: 10,
+                  }}
+                  mode="contained"
+                >
+                  <Card.Cover
+                    style={{
+                      borderBottomLeftRadius: 0,
+                      borderBottomRightRadius: 0,
+                    }}
+                    source={{ uri: item["img-url"] }}
+                  />
+                  <Card.Title
+                    subtitle="Card Title"
+                    subtitleVariant="bodyLarge"
+                    titleStyle={{ minHeight: 0 }}
+                    title={item.name}
+                    titleVariant="bodySmall"
+                    right={() => (
+                      <IconButton
+                        size={30}
+                        icon="arrow-right-circle"
+                        onPress={() => {}}
+                      />
+                    )}
+                  />
+                </Card>
+              </TouchableOpacity>
+            </Link>
+          )}
+        />
+      </View>
     </View>
   );
 }
@@ -55,8 +146,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#7C7B9B",
   },
   header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingHorizontal: 15,
     paddingTop: 15,
+    paddingBottom: 5,
   },
   nav: {
     display: "flex",
@@ -98,9 +193,9 @@ const styles = StyleSheet.create({
     paddingTop: 9,
     paddingBottom: 10,
   },
-  chatlist: {
-    paddingHorizontal: 8,
-    paddingBottom: 80,
+  mainContent: {
+    paddingHorizontal: 30,
+    paddingBottom: 100,
     paddingTop: 26,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
