@@ -27,6 +27,10 @@ export default function RootLayout() {
         name="love-exam"
         options={{ title: "Love Exam", headerShown: false }}
       />
+      <Stack.Screen
+        name="exam-screen"
+        options={{ title: "Love Exam", headerShown: false }}
+      />
     </Stack>
   );
 }
