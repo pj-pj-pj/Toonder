@@ -4,8 +4,9 @@ import {
   Text,
   StyleSheet,
   FlatList,
+  Alert,
 } from "react-native";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import file from "../constants/quizCharacters.json";
 import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
 import { Card, IconButton } from "react-native-paper";
@@ -89,7 +90,14 @@ export default function LoveExamScreen() {
   };
 
   const handleExamStart = async (character: any) => {
-    if (triesLeft <= 0) return;
+    if (triesLeft <= 0) {
+      Alert.alert(
+        "You've reached your tries limit.",
+        "Tries reset every Saturday and Wednesday at 4:44AM!"
+      );
+
+      return;
+    }
 
     const remainingTries = await updateDailyTries();
     setTriesLeft(remainingTries);
@@ -101,6 +109,7 @@ export default function LoveExamScreen() {
           name: character.name,
           imgUrl: character["img-url"],
           show: character.show,
+          quizTitle: character.quizTitle,
           triesLeft: remainingTries,
         },
       });
@@ -178,24 +187,13 @@ export default function LoveExamScreen() {
             borderRadius: 25,
           }}
         >
-          Exam Tries reset every Saturday and Wednesday at 04:44AM!
+          Exam Tries reset every Saturday and Wednesday at 4:44AM!
         </Text>
         <FlatList
           style={{ borderRadius: 10, marginTop: 10 }}
           data={characters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
-            // <Link
-            //   href={{
-            //     pathname: "/exam-screen",
-            //     params: {
-            //       name: item.name,
-            //       imgUrl: item["img-url"],
-            //       show: item.show,
-            //     },
-            //   }}
-            //   asChild
-            // >
             <TouchableOpacity onPress={() => handleExamStart(item)}>
               <Card
                 style={{
@@ -211,7 +209,7 @@ export default function LoveExamScreen() {
                   source={{ uri: item["img-url"] }}
                 />
                 <Card.Title
-                  subtitle="Card Title"
+                  subtitle={item.quizTitle}
                   subtitleVariant="bodyLarge"
                   titleStyle={{ minHeight: 0 }}
                   title={item.name}
@@ -226,7 +224,6 @@ export default function LoveExamScreen() {
                 />
               </Card>
             </TouchableOpacity>
-            // </Link>
           )}
         />
       </View>
