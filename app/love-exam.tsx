@@ -7,11 +7,105 @@ import {
   Image,
 } from "react-native";
 import { Link, router } from "expo-router";
-import characters from "../constants/quizCharacters.json";
+import file from "../constants/quizCharacters.json";
 import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
-import { Avatar, Card, IconButton } from "react-native-paper";
+import { Card, IconButton } from "react-native-paper";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const randomArrFunction = <T,>(arr: T[]): T[] => {
+  const shuffledArr = [...arr];
+  for (let i = shuffledArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
+  }
+  return shuffledArr;
+};
+
+const characters = randomArrFunction(file).slice(0, 5);
+const MAX_TRIES = 3;
 
 export default function LoveExamScreen() {
+  const [triesLeft, setTriesLeft] = useState(3);
+
+  useEffect(() => {
+    const loadTries = async () => {
+      setTriesLeft(await getExamTries());
+    };
+    loadTries();
+  }, []);
+
+  const getExamTries = async (): Promise<number> => {
+    try {
+      const storedTries = await AsyncStorage.getItem("examTries");
+      return storedTries !== null ? parseInt(storedTries) : MAX_TRIES;
+    } catch (error) {
+      console.error("Error reading tries:", error);
+      return MAX_TRIES;
+    }
+  };
+
+  const updateDailyTries = async (): Promise<number> => {
+    try {
+      const now = new Date();
+      const today = now.toDateString();
+      const [lastResetDate, lastPlayDate] = await Promise.all([
+        AsyncStorage.getItem("lastResetDate"),
+        AsyncStorage.getItem("lastPlayDate"),
+      ]);
+
+      // Check reset time (Sat/Wed 4:44 AM)
+      const isResetTime =
+        (now.getDay() === 6 || now.getDay() === 3) &&
+        now.getHours() === 4 &&
+        now.getMinutes() === 44;
+
+      if (isResetTime && lastResetDate !== today) {
+        await Promise.all([
+          AsyncStorage.setItem("examTries", MAX_TRIES.toString()),
+          AsyncStorage.setItem("lastResetDate", today),
+          AsyncStorage.setItem("lastPlayDate", today),
+        ]);
+        return MAX_TRIES;
+      }
+
+      const triesString = await AsyncStorage.getItem("examTries");
+      let tries = triesString !== null ? parseInt(triesString) : MAX_TRIES;
+
+      if (lastPlayDate !== today) {
+        tries = MAX_TRIES;
+        await AsyncStorage.setItem("lastPlayDate", today);
+      }
+
+      if (tries > 0) {
+        tries -= 1;
+        await AsyncStorage.setItem("examTries", tries.toString());
+      }
+
+      return tries;
+    } catch (error) {
+      console.error("Error updating tries:", error);
+      return MAX_TRIES;
+    }
+  };
+
+  const handleExamStart = async (character: any) => {
+    if (triesLeft <= 0) return;
+
+    const remainingTries = await updateDailyTries();
+    setTriesLeft(remainingTries);
+
+    if (remainingTries > 0) {
+      router.push({
+        pathname: "/exam-screen",
+        params: {
+          character: JSON.stringify(character),
+          triesLeft: remainingTries,
+        },
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -34,7 +128,7 @@ export default function LoveExamScreen() {
               borderRadius: 25,
             }}
           >
-            Exam Tries: 0/3
+            Exam Tries: {triesLeft}/{MAX_TRIES}
           </Text>
         </View>
       </View>
@@ -83,11 +177,10 @@ export default function LoveExamScreen() {
             borderRadius: 25,
           }}
         >
-          Today, Marceline Abadeer and Johnny Bravo prepared a special quiz for
-          you!
+          Exam Tries reset every Saturday and Wednesday at 04:44AM!
         </Text>
         <FlatList
-          style={{ borderRadius: 10 }}
+          style={{ borderRadius: 10, marginTop: 10 }}
           data={characters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
@@ -105,7 +198,7 @@ export default function LoveExamScreen() {
               <TouchableOpacity>
                 <Card
                   style={{
-                    marginTop: 10,
+                    marginBottom: 10,
                   }}
                   mode="contained"
                 >
