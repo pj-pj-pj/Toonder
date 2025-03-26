@@ -51,6 +51,7 @@ export default function ProfileSetupScreen() {
 
   const saveProfile = async () => {
     await AsyncStorage.setItem("userProfile", JSON.stringify(profile));
+    await AsyncStorage.setItem("examTries", "3");
 
     Alert.alert(
       "Toonder Profile saved!",
