@@ -190,7 +190,11 @@ export default function LoveExamScreen() {
           Exam Tries reset every Saturday and Wednesday at 4:44AM!
         </Text>
         <FlatList
-          style={{ borderRadius: 10, marginTop: 10 }}
+          style={{
+            borderRadius: 10,
+            marginTop: 10,
+            margin: "auto",
+          }}
           data={characters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
@@ -218,7 +222,6 @@ export default function LoveExamScreen() {
                     <IconButton
                       size={30}
                       icon="arrow-right-circle"
-                      onPress={() => {}}
                     />
                   )}
                 />

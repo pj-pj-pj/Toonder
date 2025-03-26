@@ -324,7 +324,7 @@ export default function ExamScreen() {
                                 : selectedAnswer === option
                                 ? "#8c8c8c" // Selected wrong answer turns gray
                                 : "#8c8c8c" // Other options stay pink
-                              : "#dfacac", // Default pink when nothing selected
+                              : "#d18989", // Default pink when nothing selected
                             borderRadius: 30,
                           }}
                           onPress={() => handleAnswerSelect(option)}
