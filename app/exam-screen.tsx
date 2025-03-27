@@ -14,7 +14,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Constants from "expo-constants";
 import { ProgressBar } from "react-native-paper";
 
-const apiKey = Constants.expoConfig?.extra?.API_KEYX;
+const apiKey = Constants.expoConfig?.extra?.API_KEYF;
 // const apiKey = "fakeapi";
 // console.log(apiKey);
 if (!apiKey) {
@@ -316,7 +316,7 @@ export default function ExamScreen() {
                             padding: 10,
                             paddingHorizontal: 15,
                             paddingVertical: 13,
-                            marginTop: 5,
+                            marginTop: 8,
                             backgroundColor: selectedAnswer
                               ? option ===
                                 questions[currentQuestionIndex].correctAnswer
@@ -396,7 +396,7 @@ export default function ExamScreen() {
                     {
                       backgroundColor: "#F08887",
                       paddingHorizontal: 125,
-                      paddingVertical: 10,
+                      paddingVertical: 14,
                       borderRadius: 20,
                       marginBottom: 35,
                       marginTop: 10,
@@ -430,7 +430,7 @@ export default function ExamScreen() {
                     {
                       backgroundColor: "#F08887",
                       paddingHorizontal: 125,
-                      paddingVertical: 10,
+                      paddingVertical: 13,
                       borderRadius: 20,
                       marginBottom: 35,
                       marginTop: 10,

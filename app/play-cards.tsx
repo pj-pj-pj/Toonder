@@ -196,13 +196,16 @@ export default function PlayCardsScreen() {
           }}
         >
           {!gameWon && (
-            <Text
-              style={{
-                color: "#7F7B9C",
-              }}
-            >
-              Find your perfect match!
-            </Text>
+            <View style={{ display: "flex" }}>
+              <Text
+                style={{
+                  color: "#7F7B9C",
+                  textAlign: "center",
+                }}
+              >
+                Find your perfect match!
+              </Text>
+            </View>
           )}
           {isGameStart ? (
             <Text
@@ -455,12 +458,22 @@ export default function PlayCardsScreen() {
                     </View>
                   ))}
                 </View>
+                <Text
+                  style={{
+                    color: "#7F7B9C",
+                    textAlign: "center",
+                    marginVertical: 20,
+                  }}
+                >
+                  Flip two cards to find matching pairs and clear the board.
+                  Trust your memory—and maybe a little bit of fate! 💕 There's a
+                  timer too!
+                </Text>
                 <TouchableOpacity
                   style={{
                     padding: 12,
                     paddingHorizontal: 85,
                     backgroundColor: "#F08887",
-                    marginTop: 15,
                     borderRadius: 25,
                   }}
                   onPress={() => {
@@ -471,12 +484,13 @@ export default function PlayCardsScreen() {
                   <Text
                     style={{
                       fontSize: 17,
+                      color: "white",
                     }}
                   >
                     <TableRowsSplit
                       size={16}
                       strokeWidth={1.5}
-                      color={"#000"}
+                      color={"white"}
                       style={{ paddingHorizontal: 18 }}
                     />
                     Play game

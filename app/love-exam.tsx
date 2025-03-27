@@ -54,6 +54,8 @@ export default function LoveExamScreen() {
         AsyncStorage.getItem("lastPlayDate"),
       ]);
 
+      // will be better if useEffect is used when resetting
+      // anyway, how this works is the user plays, then resets tries
       // Check reset time (Sat/Wed 4:44 AM)
       const isResetTime =
         (now.getDay() === 6 || now.getDay() === 3) &&
@@ -138,7 +140,8 @@ export default function LoveExamScreen() {
               borderRadius: 25,
             }}
           >
-            Exam Tries: {triesLeft}/{MAX_TRIES}
+            Exam Tries: {triesLeft > 0 ? triesLeft - 1 : triesLeft}/
+            {MAX_TRIES - 1}
           </Text>
         </View>
       </View>
@@ -187,13 +190,13 @@ export default function LoveExamScreen() {
             borderRadius: 25,
           }}
         >
-          Exam Tries reset every Saturday and Wednesday at 4:44AM!
+          Toonder quizzes you on 5 random characters. Tries reset every
+          Wednesday & Saturday at 4:44 AM!
         </Text>
         <FlatList
           style={{
             borderRadius: 10,
             marginTop: 10,
-            margin: "auto",
           }}
           data={characters}
           keyExtractor={(item) => item.name}
