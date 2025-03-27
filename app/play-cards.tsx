@@ -52,21 +52,46 @@ const gameCardsFunction = () => {
 };
 
 export default function PlayCardsScreen() {
-  // const [playTries, setPlayTries] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(85);
+  const progress = timeLeft / 85;
 
   const [cards, setCards] = useState(gameCardsFunction());
   const [selectedCards, setSelectedCards] = useState<GameCard[]>([]);
   const [matches, setMatches] = useState(0);
   const [winMessage, setWinMessage] = useState(new Animated.Value(0));
   const [gameWon, setGameWon] = useState(false);
+  const [gameLost, setGameLost] = useState(false);
   const [isGameStart, setGameStart] = useState(false);
   const [isShowCards, setIsShowCards] = useState(false);
+
+  useEffect(() => {
+    if (isGameStart && !gameWon) {
+      if (timeLeft > 0) {
+        const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      }
+    }
+
+    if (timeLeft <= 0) {
+      setGameLost(true);
+    }
+  }, [timeLeft, isGameStart]);
 
   function showCardsForOne() {
     setIsShowCards(true);
     setTimeout(() => {
       setIsShowCards(false);
-    }, 1200);
+    }, 1800);
+  }
+
+  function handleGameRestart() {
+    setCards(gameCardsFunction());
+    setSelectedCards([]);
+    setMatches(0);
+    setWinMessage(new Animated.Value(0));
+    setGameWon(false);
+    setGameStart(false);
+    setGameLost(false);
+    setTimeLeft(86);
   }
 
   const cardClickFunction = (card: GameCard) => {
@@ -158,7 +183,6 @@ export default function PlayCardsScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-
       <View style={styles.mainContent}>
         <View
           style={{
@@ -194,16 +218,15 @@ export default function PlayCardsScreen() {
             </Text>
           ) : null}
         </View>
-
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "white",
-          }}
-        >
-          {gameWon ? (
+        {gameLost ? (
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "white",
+            }}
+          >
             <View style={styles.winMessage}>
               <View style={styles.winMessageContent}>
                 <Text
@@ -211,14 +234,14 @@ export default function PlayCardsScreen() {
                     fontSize: 20,
                   }}
                 >
-                  Perfect Match 💖
+                  Game Over! 💔
                 </Text>
                 <Text
                   style={{
                     fontSize: 16,
                   }}
                 >
-                  You found all the hidden hearts!
+                  You run out of time.
                 </Text>
               </View>
               <View
@@ -246,7 +269,7 @@ export default function PlayCardsScreen() {
                             flex: 1,
                             margin: 4,
                             alignItems: "center",
-                            backgroundColor: "#F08887",
+                            backgroundColor: "gray",
                             borderRadius: 5,
                           },
                         ]}
@@ -256,14 +279,7 @@ export default function PlayCardsScreen() {
                 ))}
               </View>
               <TouchableOpacity
-                onPress={() => {
-                  setCards(gameCardsFunction());
-                  setSelectedCards([]);
-                  setMatches(0);
-                  setWinMessage(new Animated.Value(0));
-                  setGameWon(false);
-                  setGameStart(!isGameStart);
-                }}
+                onPress={() => handleGameRestart()}
                 style={{
                   padding: 12,
                   paddingHorizontal: 85,
@@ -278,119 +294,217 @@ export default function PlayCardsScreen() {
                     fontSize: 16,
                   }}
                 >
-                  Restart
+                  Try again
                 </Text>
               </TouchableOpacity>
             </View>
-          ) : isGameStart ? (
-            <>
-              <View style={styles.grid}>
-                {Array.from({
-                  length: Math.ceil(Math.min(cards.length, 28) / 4),
-                }).map((_, index) => (
-                  <View
-                    key={index}
-                    style={styles.row}
-                  >
-                    {cards.slice(index * 4, index * 4 + 4).map((card) => (
-                      <TouchableOpacity
-                        key={card.id}
-                        style={[
-                          styles.card,
-                          card.isFlipped && styles.cardFlipped,
-                        ]}
-                        onPress={() => cardClickFunction(card)}
-                        disabled={isShowCards}
-                      >
-                        {isShowCards ? (
-                          <Image
-                            style={styles.img}
-                            source={{ uri: card.imgUrl }}
-                          />
-                        ) : card.isFlipped ? (
-                          <Image
-                            style={styles.img}
-                            source={{ uri: card.imgUrl }}
-                          />
-                        ) : null}
-                      </TouchableOpacity>
-                    ))}
-                  </View>
-                ))}
-              </View>
-              <ProgressBar
-                progress={0}
-                color={MD3Colors.error50}
-              />
-            </>
-          ) : (
-            <>
-              <View
-                style={{
-                  height: "55%",
-                }}
-              >
-                {Array.from({
-                  length: Math.ceil(Math.min(cards.length, 16) / 4),
-                }).map((_, index) => (
-                  <View
-                    key={index}
+          </View>
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "white",
+            }}
+          >
+            {gameWon ? (
+              <View style={styles.winMessage}>
+                <View style={styles.winMessageContent}>
+                  <Text
                     style={{
-                      flex: 1,
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      width: "100%",
+                      fontSize: 20,
                     }}
                   >
-                    {cards.slice(index * 4, index * 4 + 4).map((card) => (
-                      <TouchableOpacity
-                        key={card.id}
-                        style={[
-                          {
-                            flex: 1,
-                            margin: 4,
-                            alignItems: "center",
-                            backgroundColor: "#D9D9D9",
-                            borderRadius: 5,
-                          },
-                          (card.id === 1 || card.id === 10) &&
-                            styles.specialCard,
-                        ]}
-                      ></TouchableOpacity>
-                    ))}
-                  </View>
-                ))}
-              </View>
-              <TouchableOpacity
-                style={{
-                  padding: 12,
-                  paddingHorizontal: 85,
-                  backgroundColor: "#F08887",
-                  marginTop: 15,
-                  borderRadius: 25,
-                }}
-                onPress={() => {
-                  setGameStart(!isGameStart);
-                  showCardsForOne();
-                }}
-              >
-                <Text
+                    Perfect Match 💖
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                    }}
+                  >
+                    You found all the hidden hearts!
+                  </Text>
+                </View>
+                <View
                   style={{
-                    fontSize: 17,
+                    height: "55%",
                   }}
                 >
-                  <TableRowsSplit
-                    size={16}
-                    strokeWidth={1.5}
-                    color={"#000"}
-                    style={{ paddingHorizontal: 18 }}
-                  />
-                  Play game
-                </Text>
-              </TouchableOpacity>
-            </>
-          )}
-        </View>
+                  {Array.from({
+                    length: Math.ceil(Math.min(cards.length, 16) / 4),
+                  }).map((_, index) => (
+                    <View
+                      key={index}
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      {cards.slice(index * 4, index * 4 + 4).map((card) => (
+                        <TouchableOpacity
+                          key={card.id}
+                          style={[
+                            {
+                              flex: 1,
+                              margin: 4,
+                              alignItems: "center",
+                              backgroundColor: "#F08887",
+                              borderRadius: 5,
+                            },
+                          ]}
+                        ></TouchableOpacity>
+                      ))}
+                    </View>
+                  ))}
+                </View>
+                <TouchableOpacity
+                  onPress={() => handleGameRestart()}
+                  style={{
+                    padding: 12,
+                    paddingHorizontal: 85,
+                    backgroundColor: "#918ABD",
+                    marginTop: 15,
+                    borderRadius: 25,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: "white",
+                      fontSize: 16,
+                    }}
+                  >
+                    Restart
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : isGameStart ? (
+              <>
+                <View style={styles.grid}>
+                  {Array.from({
+                    length: Math.ceil(Math.min(cards.length, 28) / 4),
+                  }).map((_, index) => (
+                    <View
+                      key={index}
+                      style={styles.row}
+                    >
+                      {cards.slice(index * 4, index * 4 + 4).map((card) => (
+                        <TouchableOpacity
+                          key={card.id}
+                          style={[
+                            styles.card,
+                            card.isFlipped && styles.cardFlipped,
+                          ]}
+                          onPress={() => cardClickFunction(card)}
+                          disabled={isShowCards}
+                        >
+                          {isShowCards ? (
+                            <Image
+                              style={styles.img}
+                              source={{ uri: card.imgUrl }}
+                            />
+                          ) : card.isFlipped ? (
+                            <Image
+                              style={styles.img}
+                              source={{ uri: card.imgUrl }}
+                            />
+                          ) : null}
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  ))}
+                </View>
+              </>
+            ) : (
+              <>
+                <View
+                  style={{
+                    height: "55%",
+                  }}
+                >
+                  {Array.from({
+                    length: Math.ceil(Math.min(cards.length, 16) / 4),
+                  }).map((_, index) => (
+                    <View
+                      key={index}
+                      style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "100%",
+                      }}
+                    >
+                      {cards.slice(index * 4, index * 4 + 4).map((card) => (
+                        <TouchableOpacity
+                          key={card.id}
+                          style={[
+                            {
+                              flex: 1,
+                              margin: 4,
+                              alignItems: "center",
+                              backgroundColor: "#D9D9D9",
+                              borderRadius: 5,
+                            },
+                            (card.id === 1 || card.id === 10) &&
+                              styles.specialCard,
+                          ]}
+                        ></TouchableOpacity>
+                      ))}
+                    </View>
+                  ))}
+                </View>
+                <TouchableOpacity
+                  style={{
+                    padding: 12,
+                    paddingHorizontal: 85,
+                    backgroundColor: "#F08887",
+                    marginTop: 15,
+                    borderRadius: 25,
+                  }}
+                  onPress={() => {
+                    setGameStart(!isGameStart);
+                    showCardsForOne();
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 17,
+                    }}
+                  >
+                    <TableRowsSplit
+                      size={16}
+                      strokeWidth={1.5}
+                      color={"#000"}
+                      style={{ paddingHorizontal: 18 }}
+                    />
+                    Play game
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        )}
+        {isGameStart && !gameWon && (
+          <View
+            style={{ paddingHorizontal: 30, marginTop: 5, paddingVertical: 20 }}
+          >
+            <Text style={{ textAlign: "center", marginTop: 8 }}>
+              {timeLeft} seconds remaining
+            </Text>
+            <ProgressBar
+              progress={progress}
+              color={"#F6A5A4"}
+              style={{
+                borderRadius: 50,
+                height: 7,
+                maxWidth: 300,
+                margin: "auto",
+              }}
+            />
+          </View>
+        )}
       </View>
     </View>
   );
