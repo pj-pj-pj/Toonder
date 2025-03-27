@@ -1,8 +1,13 @@
 [
   {
-    "name": "Betty Boop",
-    "img-url": "https://www.diamondartclub.com/cdn/shop/products/betty-boop-pose-diamond-art-painting-30535127105729.jpg?v=1631434953&width=3000",
-    "show": ""
+    "name": "Jessica Rabbit",
+    "img-url": "https://static.wikia.nocookie.net/disney/images/9/93/Profile-_Jessica_Rabbit.png/revision/latest/thumbnail/width/360/height/360?cb=20200518184544",
+    "show": "Who Framed Roger Rabbit"
+  },
+  {
+    "name": "Roger Rabbit",
+    "img-url": "https://www.sideshow.com/wp/wp-content/uploads/2018/06/who-framed-roger-rabbit-disneyscreencaps.com-40-740x401.jpg",
+    "show": "Who Framed Roger Rabbit"
   },
   {
     "name": "Marceline the Vampire Queen",
@@ -10,8 +15,43 @@
     "show": "Adventure Time"
   },
   {
+    "name": "Johnny Bravo",
+    "img-url": "https://images.alphacoders.com/139/1391243.jpg",
+    "show": ""
+  },
+  {
+    "name": "Groot",
+    "img-url": "https://wallpapers.com/images/featured/groot-eyu0znclsfx37s76.jpg",
+    "show": "Guardians of the Galaxy"
+  },
+  {
+    "name": "Vergil",
+    "img-url": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2019/08/Devil-May-Cry-Vergil.jpg",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Trish",
+    "img-url": "https://thumbs.modthesims2.com/img/5/5/3/1/8/MTS_thunderbreak-725645-TrishAndPizza.jpg?cb=1204663324",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Dante",
+    "img-url": "https://assetsio.gnwcdn.com/dmc4_dante_cassanova.jpg.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Nero",
+    "img-url": "https://preview.redd.it/is-it-just-me-or-do-i-find-nero-to-look-like-a-retired-emo-v0-aadno5m8k4y91.jpg?width=640&crop=smart&auto=webp&s=a02177f2f735b66c10f927ea1e20601eda233e15",
+    "show": "Devil May Cry"
+  },
+  {
+    "name": "Chel",
+    "img-url": "https://imgix.ranker.com/user_node_img/3838/76758631/original/chel-u3?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&w=500",
+    "show": "The Road to El Dorado"
+  },
+  {
     "name": "Catwoman",
-    "img-url": "https://149455152.v2.pressablecdn.com/wp-content/uploads/2023/01/Batman-One-Bad-Day-Catwoman-1-1.jpg",
+    "img-url": "https://images.alphacoders.com/871/thumb-1920-871607.jpg",
     "show": "Batman: The Animated Series"
   },
   {
@@ -20,29 +60,34 @@
     "show": "SpongeBob SquarePants"
   },
   {
+    "name": "Betty Boop",
+    "img-url": "https://www.diamondartclub.com/cdn/shop/products/betty-boop-pose-diamond-art-painting-30535127105729.jpg?v=1631434953&width=3000",
+    "show": ""
+  },
+  {
     "name": "Squidward",
-    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTebV7b5ZxYAgja5kbmQRv_diUjfKOF4yXYoA&s",
+    "img-url": "https://getwallpapers.com/wallpaper/full/2/1/3/1383651-free-squidward-wallpaper-1920x1080-cell-phone.jpg",
     "show": "SpongeBob SquarePants"
   },
   {
     "name": "Lumpy Space Princess",
-    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBWbdeyddCcgpXtUxZq99Qo1dBLiC-TstO0g&s",
+    "img-url": "https://static.wikia.nocookie.net/adventuretimeoncn/images/7/7c/Lsp.jpg/revision/latest?cb=20121211222900",
     "show": "Adventure Time"
   },
   {
-    "name": "Sara Bellum",
-    "img-url": "https://live.staticflickr.com/4120/4850537403_3c279ab8ae_b.jpg",
-    "show": "Powerpuff Girls"
+    "name": "Homer Simpson",
+    "img-url": "https://c4.wallpaperflare.com/wallpaper/738/957/225/homer-wall-wallpaper-preview.jpg",
+    "show": "The Simpsons"
   },
   {
-    "name": "Johnny Bravo",
-    "img-url": "https://i.redd.it/ttc519wxn3391.jpg",
+    "name": "Shrek",
+    "img-url": "https://c4.wallpaperflare.com/wallpaper/973/339/615/shrek-wallpaper-thumb.jpg",
     "show": ""
   },
   {
-    "name": "Groot",
-    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNo9iAiy-ZfXDkGpBQncfOkh6KaGSssBwteA&s",
-    "show": "Guardians of the Galaxy"
+    "name": "Sara Bellum",
+    "img-url": "https://imagedelivery.net/LBWXYQ-XnKSYxbZ-NuYGqQ/02d7dbc3-48b5-4e54-2568-588f76b3d100/avatarhd",
+    "show": "Powerpuff Girls"
   },
   {
     "name": "Pikachu",
@@ -56,27 +101,47 @@
   },
   {
     "name": "Ice Bear",
-    "img-url": "https://media.tenor.com/4D0hGR4UVlgAAAAM/in-love-bear.gif",
+    "img-url": "https://wallpaperaccess.com/full/1267072.jpg",
     "show": "We Bare Bears"
   },
   {
     "name": "Baymax",
-    "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkLE3_mvX_ufLXm08Rolz5GPO2GW9Ac3bk3g&s",
+    "img-url": "https://images.alphacoders.com/549/549677.jpg",
     "show": "Big Hero 6"
   },
   {
     "name": "Finn the Human",
-    "img-url": "https://comicbook.com/wp-content/uploads/sites/4/2023/08/396140fc-1692-4a2a-9a76-3d4707980773.jpg",
+    "img-url": "https://blenderartists.org/uploads/default/original/4X/1/7/0/17053eab8f2163d01f458d87b2e48d786d64e2e3.jpeg",
     "show": "Adventure Time"
   },
   {
     "name": "Jake the Dog",
-    "img-url": "https://m.media-amazon.com/images/I/716kP2OKrzL._AC_UY1000_.jpg",
+    "img-url": "https://mir-s3-cdn-cf.behance.net/projects/404/d1f1fa55749075.Y3JvcCwxMjAyLDk0MSwwLDI3Ng.png",
     "show": "Adventure Time"
   },
   {
     "name": "Stitch",
     "img-url": "https://pyxis.nymag.com/v1/imgs/563/5c3/3e2746c1ccd37dea8499d7d559c4ab6a26-stitch.2x.rsocial.w600.jpg",
     "show": "Lilo & Stitch"
+  },
+  {
+    "name": "Rapunzel",
+    "img-url": "https://variety.com/wp-content/uploads/2024/12/tangled.jpg",
+    "show": "Tangled"
+  },
+  {
+    "name": "Lucy Loud",
+    "img-url": "https://wallpapers.com/images/hd/the-loud-house-lucy-loud-4bygr5gnfwx4xt7l.jpg",
+    "show": "The Loud House"
+  },
+  {
+    "name": "Stewie Griffin",
+    "img-url": "https://wallpapers.com/images/hd/family-guy-stewie-griffin-z8if6xxqftztkwrk.jpg",
+    "show": "Family Guy"
+  },
+  {
+    "name": "Ariel",
+    "img-url": "https://i.ebayimg.com/images/g/MQgAAOSwlcBlKwNM/s-l1200.jpg",
+    "show": "The Little Mermaid"
   }
 ]

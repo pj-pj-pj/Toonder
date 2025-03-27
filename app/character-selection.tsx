@@ -5,21 +5,102 @@ import {
   Image,
   Text,
   StyleSheet,
+  TextInput,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import characters from "../constants/characters.json";
+import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
+import { Searchbar } from "react-native-paper";
+import { useEffect, useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CharacterSelectionScreen() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchBarRef = useRef<TextInput>(null);
+  const [profile, setProfile] = useState<any>(null);
+
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const storedProfile = await AsyncStorage.getItem("userProfile");
+        if (storedProfile !== null) {
+          setProfile(JSON.parse(storedProfile));
+        }
+      } catch (error) {
+        console.error("Error loading profile:", error);
+      }
+    };
+
+    loadProfile();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Toonder</Text>
       </View>
+      <View style={styles.nav}>
+        <TouchableOpacity onPress={() => router.replace("/love-exam")}>
+          <Text style={styles.subtitleInactive}>
+            <ScanHeart
+              size={15}
+              strokeWidth={1.5}
+              color={"#e6e6e6"}
+              style={{ paddingHorizontal: 15 }}
+            />
+            Love Exam
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.subtitle}>
+          <BotMessageSquare
+            size={15}
+            strokeWidth={1.5}
+            color={"white"}
+          />
+          <Text style={{ color: "white", fontSize: 16 }}>Chatbots</Text>
+        </View>
+        <TouchableOpacity onPress={() => router.replace("/play-cards")}>
+          <Text style={styles.subtitleInactive}>
+            <Grid
+              size={15}
+              strokeWidth={1.5}
+              color={"#e6e6e6"}
+              style={{ paddingHorizontal: 15 }}
+            />
+            Play Cards
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.chatlist}>
-        <Text style={styles.subtitle}>❣❣ Chatbots ❣❣</Text>
+        <Searchbar
+          ref={searchBarRef}
+          placeholder="Search"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+          iconColor="#7C7B9B"
+          placeholderTextColor="#a3a2b9"
+          onClearIconPress={() => {
+            setSearchQuery("");
+            searchBarRef.current?.blur();
+          }}
+          inputStyle={{
+            padding: -10,
+            marginVertical: -20,
+            marginHorizontal: -10,
+          }}
+          style={{
+            height: 38,
+            marginHorizontal: 10,
+            marginBottom: 10,
+          }}
+        />
         <FlatList
-          data={characters}
+          data={filteredCharacters}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <Link
@@ -29,6 +110,8 @@ export default function CharacterSelectionScreen() {
                   name: item.name,
                   imgUrl: item["img-url"],
                   show: item.show,
+                  userName: profile?.name || "Unknown",
+                  userAge: profile?.age || "Unknown",
                 },
               }}
               asChild
@@ -63,7 +146,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#7C7B9B",
   },
   header: {
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    paddingBottom: 5,
+  },
+  nav: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: "auto",
+    alignItems: "center",
+    paddingBottom: 2,
   },
   title: {
     fontSize: 22,
@@ -73,19 +166,29 @@ const styles = StyleSheet.create({
     fontFamily: "titleFont",
   },
   subtitle: {
-    fontSize: 20,
     color: "white",
-    paddingHorizontal: 30,
-    padding: 14,
+    paddingHorizontal: 15,
     paddingTop: 9,
-    marginTop: -25,
-    margin: "auto",
-    marginBottom: 14,
+    paddingBottom: 10,
+    marginTop: -10,
+    marginBottom: -52,
     zIndex: 999999,
     textAlign: "center",
     backgroundColor: "#F08887",
-    borderRadius: 20,
+    borderRadius: 18,
     fontFamily: "subtitleFont",
+    flexDirection: "row",
+    gap: 5,
+  },
+  subtitleInactive: {
+    fontSize: 16,
+    color: "#e6e6e6",
+    textAlign: "center",
+    borderRadius: 18,
+    fontFamily: "subtitleFont",
+    paddingHorizontal: 20,
+    paddingTop: 9,
+    paddingBottom: 10,
   },
   characterCard: {
     flexDirection: "row",
@@ -94,8 +197,8 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   characterImage: {
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
     borderRadius: 29,
     marginRight: 15,
   },
@@ -103,7 +206,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   characterName: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#73719f",
     fontFamily: "contentFont",
   },
@@ -113,8 +216,8 @@ const styles = StyleSheet.create({
   },
   chatlist: {
     paddingHorizontal: 8,
-    paddingBottom: 70,
-    fontSize: 14,
+    paddingBottom: 80,
+    paddingTop: 26,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     backgroundColor: "white",
