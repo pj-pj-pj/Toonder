@@ -10,9 +10,6 @@ export default function ProfileSetupScreen() {
   const [inputAge, setInputAge] = useState("");
   const [stage, setStage] = useState(2);
 
-  const primaryColor = "#282828";
-  const accentColor = "#e56766";
-
   useEffect(() => {
     if (profile.name && profile.age) {
       saveProfile();
@@ -54,7 +51,7 @@ export default function ProfileSetupScreen() {
     Alert.alert(
       "Toonder Profile saved!",
       `Your name is ${profile.name} and you are ${profile.age} years old. ${
-        parseInt(profile.age) > 70 && `(Aren't you way too old? Anyway...)`
+        parseInt(profile.age) > 70 ? `(Aren't you way too old? Anyway...)` : ""
       }`,
       [{ text: "OK", onPress: () => router.replace("/character-selection") }]
     );
