@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { Link, router } from "expo-router";
 import characters from "../constants/characters.json";
-import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Foundation from "@expo/vector-icons/Foundation";
 import { Searchbar } from "react-native-paper";
 import { useEffect, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -44,35 +45,35 @@ export default function CharacterSelectionScreen() {
         <Text style={styles.title}>Toonder</Text>
       </View>
       <View style={styles.nav}>
-        <TouchableOpacity onPress={() => router.replace("/love-exam")}>
-          <Text style={styles.subtitleInactive}>
-            <ScanHeart
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Love Exam
-          </Text>
+        <TouchableOpacity
+          style={styles.subtitleInactive}
+          onPress={() => router.replace("/love-exam")}
+        >
+          <Foundation
+            name="clipboard-pencil"
+            size={14}
+            color="#e6e6e6"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Love Exam</Text>
         </TouchableOpacity>
         <View style={styles.subtitle}>
-          <BotMessageSquare
-            size={15}
-            strokeWidth={1.5}
-            color={"white"}
+          <MaterialCommunityIcons
+            name="robot-happy-outline"
+            size={14}
+            color="white"
           />
-          <Text style={{ color: "white", fontSize: 16 }}>Chatbots</Text>
+          <Text style={{ color: "white", fontSize: 15 }}>Chatbots</Text>
         </View>
-        <TouchableOpacity onPress={() => router.replace("/play-cards")}>
-          <Text style={styles.subtitleInactive}>
-            <Grid
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Play Cards
-          </Text>
+        <TouchableOpacity
+          style={styles.subtitleInactive}
+          onPress={() => router.replace("/play-cards")}
+        >
+          <MaterialCommunityIcons
+            name="cards-playing-outline"
+            size={14}
+            color="#e6e6e6"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Play Cards</Text>
         </TouchableOpacity>
       </View>
 
@@ -179,16 +180,19 @@ const styles = StyleSheet.create({
     fontFamily: "subtitleFont",
     flexDirection: "row",
     gap: 5,
+    alignItems: "center",
   },
   subtitleInactive: {
+    flexDirection: "row",
     fontSize: 16,
-    color: "#e6e6e6",
     textAlign: "center",
     borderRadius: 18,
     fontFamily: "subtitleFont",
     paddingHorizontal: 20,
     paddingTop: 9,
     paddingBottom: 10,
+    alignItems: "center",
+    gap: 5,
   },
   characterCard: {
     flexDirection: "row",

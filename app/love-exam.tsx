@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { router } from "expo-router";
 import file from "../constants/quizCharacters.json";
-import { BotMessageSquare, Grid, ScanHeart } from "lucide-react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Foundation from "@expo/vector-icons/Foundation";
 import { Card, IconButton } from "react-native-paper";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -54,7 +55,7 @@ export default function LoveExamScreen() {
         AsyncStorage.getItem("lastPlayDate"),
       ]);
 
-      // will be better if useEffect is used when resetting
+      // TODO: will be better if useEffect is used when resetting
       // anyway, how this works is the user plays, then resets tries
       // Check reset time (Sat/Wed 4:44 AM)
       const isResetTime =
@@ -147,36 +148,34 @@ export default function LoveExamScreen() {
       </View>
       <View style={styles.nav}>
         <TouchableOpacity
+          style={styles.subtitleInactive}
           onPress={() => router.replace("/character-selection")}
         >
-          <Text style={styles.subtitleInactive}>
-            <BotMessageSquare
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Chatbots
-          </Text>
+          <MaterialCommunityIcons
+            name="robot-happy-outline"
+            size={14}
+            color="white"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Chatbots</Text>
         </TouchableOpacity>
         <View style={styles.subtitle}>
-          <ScanHeart
-            size={15}
-            strokeWidth={1.5}
-            color={"white"}
+          <Foundation
+            name="clipboard-pencil"
+            size={14}
+            color="white"
           />
           <Text style={{ color: "white", fontSize: 16 }}>Love Exam</Text>
         </View>
-        <TouchableOpacity onPress={() => router.replace("/play-cards")}>
-          <Text style={styles.subtitleInactive}>
-            <Grid
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Play Cards
-          </Text>
+        <TouchableOpacity
+          style={styles.subtitleInactive}
+          onPress={() => router.replace("/play-cards")}
+        >
+          <MaterialCommunityIcons
+            name="cards-playing-outline"
+            size={14}
+            color="#e6e6e6"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Play Cards</Text>
         </TouchableOpacity>
       </View>
 
@@ -279,16 +278,19 @@ const styles = StyleSheet.create({
     fontFamily: "subtitleFont",
     flexDirection: "row",
     gap: 5,
+    alignItems: "center",
   },
   subtitleInactive: {
+    flexDirection: "row",
     fontSize: 16,
-    color: "#e6e6e6",
     textAlign: "center",
     borderRadius: 18,
     fontFamily: "subtitleFont",
     paddingHorizontal: 20,
     paddingTop: 9,
     paddingBottom: 10,
+    alignItems: "center",
+    gap: 5,
   },
   mainContent: {
     paddingHorizontal: 30,

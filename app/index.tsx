@@ -23,26 +23,22 @@ export default function HomeScreen() {
   const [isShowButton, setIsShowButton] = useState(false);
   const [tagline, setTagline] = useState(randomTagline);
   const [isShowInstruction, setIsShowInstruction] = useState(false);
-  const primaryColor = "#282828";
-  const accentColor = "#e56766";
 
-  const handleOnPress = async () => {
-    try {
-      const storedProfile = await AsyncStorage.getItem("userProfile");
-      const destination = storedProfile
-        ? "/character-selection"
-        : "/profile-setup";
-
-      setTimeout(() => {
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      try {
+        const storedProfile = await AsyncStorage.getItem("userProfile");
+        const destination = storedProfile
+          ? "/character-selection"
+          : "/profile-setup";
         router.replace(destination);
-      }, 800);
-    } catch (error) {
-      console.error("Error checking profile:", error);
-      setTimeout(() => {
+      } catch (error) {
+        console.error("Error checking profile:", error);
         router.replace("/profile-setup");
-      }, 800);
-    }
-  };
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -83,19 +79,11 @@ export default function HomeScreen() {
         <Text style={styles.tagline}>{tagline}</Text>
       </View>
 
-      {isShowButton ? (
-        <AnimatedLikeButton
-          primary={primaryColor}
-          accent={accentColor}
-          onPress={handleOnPress}
-        />
-      ) : (
-        <ActivityIndicator
-          animating={true}
-          size="large"
-          color={"#F08887"}
-        />
-      )}
+      <ActivityIndicator
+        animating={true}
+        size="large"
+        color={"#F08887"}
+      />
 
       {isShowInstruction && (
         <Text style={styles.tagline}>Click the 💗 to get started!</Text>

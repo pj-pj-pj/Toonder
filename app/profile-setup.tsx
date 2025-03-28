@@ -26,10 +26,8 @@ export default function ProfileSetupScreen() {
       return;
     }
 
-    setTimeout(() => {
-      setProfile((prev) => ({ ...prev, name: inputName }));
-      setStage(1);
-    }, 500);
+    setProfile((prev) => ({ ...prev, name: inputName }));
+    setStage(1);
   }
 
   function handleOnPressAge() {
@@ -79,7 +77,7 @@ export default function ProfileSetupScreen() {
           <View style={styles.note}>
             <Text style={styles.heartDecor}>💘💘</Text>
             <TextInput
-              style={{ marginHorizontal: 15, color: "white", fontSize: 18 }}
+              style={{ marginHorizontal: 40, color: "white", fontSize: 16 }}
               placeholder="0-16 Characters"
               placeholderTextColor={"#a3a2b9"}
               autoFocus
@@ -88,14 +86,9 @@ export default function ProfileSetupScreen() {
               maxLength={16}
               value={inputName}
               onChangeText={setInputName}
+              onSubmitEditing={handleOnPressName}
             />
           </View>
-
-          <AnimatedLikeButton
-            primary={inputName.trim() === "" ? primaryColor : accentColor}
-            accent={inputName.trim() === "" ? primaryColor : accentColor}
-            onPress={handleOnPressName}
-          />
         </>
       )}
 
@@ -106,7 +99,7 @@ export default function ProfileSetupScreen() {
           <View style={styles.note}>
             <Text style={styles.heartDecor}>💘</Text>
             <TextInput
-              style={{ marginHorizontal: 15, color: "white", fontSize: 18 }}
+              style={{ marginHorizontal: 25, color: "white", fontSize: 18 }}
               placeholder="16-99+"
               placeholderTextColor={"#a3a2b9"}
               autoFocus
@@ -115,22 +108,9 @@ export default function ProfileSetupScreen() {
               maxLength={3}
               value={inputAge}
               onChangeText={setInputAge}
+              onSubmitEditing={handleOnPressAge}
             />
           </View>
-
-          <AnimatedLikeButton
-            primary={
-              inputAge.trim() === "" || parseInt(inputAge, 10) < 16
-                ? primaryColor
-                : accentColor
-            }
-            accent={
-              inputAge.trim() === "" || parseInt(inputAge, 10) < 16
-                ? primaryColor
-                : accentColor
-            }
-            onPress={handleOnPressAge}
-          />
         </>
       )}
     </View>
@@ -149,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#6b6691",
     borderRadius: 10,
     paddingBottom: 10,
-    marginTop: 30,
+    marginTop: 50,
     marginBottom: 50,
     marginHorizontal: 15,
     justifyContent: "center",

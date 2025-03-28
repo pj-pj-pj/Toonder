@@ -9,14 +9,10 @@ import {
 } from "react-native";
 import { router } from "expo-router";
 import characters from "../constants/characters.json";
-import {
-  BotMessageSquare,
-  Grid,
-  ScanHeart,
-  TableRowsSplit,
-} from "lucide-react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Foundation from "@expo/vector-icons/Foundation";
 import { useEffect, useState } from "react";
-import { MD3Colors, ProgressBar } from "react-native-paper";
+import { ProgressBar } from "react-native-paper";
 
 type GameCard = {
   id: number;
@@ -150,37 +146,35 @@ export default function PlayCardsScreen() {
         <Text style={styles.title}>Toonder</Text>
       </View>
       <View style={styles.nav}>
-        <TouchableOpacity onPress={() => router.replace("/love-exam")}>
-          <Text style={styles.subtitleInactive}>
-            <ScanHeart
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Love Exam
-          </Text>
+        <TouchableOpacity
+          style={styles.subtitleInactive}
+          onPress={() => router.replace("/love-exam")}
+        >
+          <Foundation
+            name="clipboard-pencil"
+            size={14}
+            color="#e6e6e6"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Love Exam</Text>
         </TouchableOpacity>
         <View style={styles.subtitle}>
-          <Grid
-            size={15}
-            strokeWidth={1.5}
-            color={"white"}
+          <MaterialCommunityIcons
+            name="cards-playing-outline"
+            size={14}
+            color="white"
           />
           <Text style={{ color: "white", fontSize: 16 }}>Play Cards</Text>
         </View>
         <TouchableOpacity
           onPress={() => router.replace("/character-selection")}
+          style={styles.subtitleInactive}
         >
-          <Text style={styles.subtitleInactive}>
-            <BotMessageSquare
-              size={15}
-              strokeWidth={1.5}
-              color={"#e6e6e6"}
-              style={{ paddingHorizontal: 15 }}
-            />
-            Chatbots
-          </Text>
+          <MaterialCommunityIcons
+            name="robot-happy-outline"
+            size={14}
+            color="#e6e6e6"
+          />
+          <Text style={{ color: "#e6e6e6", fontSize: 15 }}>Chatbots</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.mainContent}>
@@ -475,24 +469,32 @@ export default function PlayCardsScreen() {
                     paddingHorizontal: 85,
                     backgroundColor: "#F08887",
                     borderRadius: 25,
+                    gap: 5,
+                    alignItems: "center",
+                    flexDirection: "row",
                   }}
                   onPress={() => {
                     setGameStart(!isGameStart);
                     showCardsForOne();
                   }}
                 >
+                  <MaterialCommunityIcons
+                    name="cards-playing"
+                    size={16}
+                    color="white"
+                  />
                   <Text
                     style={{
                       fontSize: 17,
                       color: "white",
                     }}
                   >
-                    <TableRowsSplit
+                    {/* <TableRowsSplit
                       size={16}
                       strokeWidth={1.5}
                       color={"white"}
                       style={{ paddingHorizontal: 18 }}
-                    />
+                    /> */}
                     Play game
                   </Text>
                 </TouchableOpacity>
@@ -563,16 +565,19 @@ const styles = StyleSheet.create({
     fontFamily: "subtitleFont",
     flexDirection: "row",
     gap: 5,
+    alignItems: "center",
   },
   subtitleInactive: {
+    flexDirection: "row",
     fontSize: 16,
-    color: "#e6e6e6",
     textAlign: "center",
     borderRadius: 18,
     fontFamily: "subtitleFont",
     paddingHorizontal: 20,
     paddingTop: 9,
     paddingBottom: 10,
+    alignItems: "center",
+    gap: 5,
   },
   mainContent: {
     paddingHorizontal: 20,
