@@ -118,7 +118,7 @@ eas build --platform android --profile production --type archive
 ## Limitations
 
 - ❌ Basic messaging flow (no media, images, or voice support).
-- ❌ Message limit.
+- ❌ Has limited amount of sending messages (free .99 api).
 - ❌ A lot more I can't think of right now.
 - ❌ Limited amount of exam tries.
 - ❌ Store most recent score of exam taken.
